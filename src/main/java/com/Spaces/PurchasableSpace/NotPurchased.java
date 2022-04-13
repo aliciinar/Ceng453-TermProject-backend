@@ -1,13 +1,13 @@
 package com.Spaces.PurchasableSpace;
 
-import com.Player.Player;
-import com.Spaces.Space;
+import com.Player.IPlayer;
 
 public class NotPurchased implements SpaceState{
     @Override
-    public SpaceState Action(Player player , SpaceDeed space) {
+    public SpaceState Action(IPlayer player , SpaceDeed space) {
 
-        boolean purchase = true;
+        boolean purchase = player.purchaseSpace(space.cost);
+
         //Get Action From Player via GUI
         if(purchase) {
             space.Purchase(player , - space.GetCost());

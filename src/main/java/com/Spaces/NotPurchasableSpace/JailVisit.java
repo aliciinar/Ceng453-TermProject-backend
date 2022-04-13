@@ -1,5 +1,6 @@
 package com.Spaces.NotPurchasableSpace;
 
+import com.Player.IPlayer;
 import com.Player.Player;
 import com.Spaces.AbstractSpace;
 
@@ -10,6 +11,6 @@ public class JailVisit extends AbstractSpace {
         position = pos;
     }
     @Override
-    public void action(Player player) {
+    public void action(IPlayer player) {
     }
 }

@@ -1,4 +1,5 @@
 package com.Spaces.NotPurchasableSpace;
+import com.Player.IPlayer;
 import com.Player.Player;
 import com.Spaces.AbstractSpace;
 
@@ -10,7 +11,7 @@ public class StartingPoint extends AbstractSpace {
         this.name = name;
     }
     @Override
-    public void action(Player player) {
+    public void action(IPlayer player) {
 
     }
 }

@@ -1,4 +1,5 @@
 package com.Spaces.NotPurchasableSpace;
+import com.Player.IPlayer;
 import com.Player.Player;
 import com.Spaces.AbstractSpace;
 
@@ -13,7 +14,7 @@ public class GoJail  extends AbstractSpace {
     }
 
     @Override
-    public void action(Player player) {
-        player.GoJail(jailLocation);
+    public void action(IPlayer player) {
+        player.goJail(jailLocation);
     }
 }

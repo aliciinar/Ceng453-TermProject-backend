@@ -1,8 +1,5 @@
 package com.Player;
-import com.Spaces.Space;
 import com.utils.Dices;
-
-import java.util.List;
 
 public class PlayerNotPrison implements PlayerState{
 
@@ -21,7 +18,7 @@ public class PlayerNotPrison implements PlayerState{
 
         dices = Dices.throwDice() ;
 
-        player.MovePlayer(dices[0]);
+        player.movePlayer(dices[0]);
 
         if (dices[1] == 0) {
             diceThrow = diceThrow - 1;

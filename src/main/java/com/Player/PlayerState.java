@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PlayerState {
 
-    boolean Play(Player player );
+    boolean Play(IPlayer player );
     PlayerState EndPlay();
 
 

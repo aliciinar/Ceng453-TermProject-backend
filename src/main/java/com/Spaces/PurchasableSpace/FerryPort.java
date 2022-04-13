@@ -1,5 +1,6 @@
 package com.Spaces.PurchasableSpace;
 
+import com.Player.IPlayer;
 import com.Player.Player;
 
 
@@ -15,15 +16,15 @@ public class FerryPort extends SpaceDeed {
     }
 
     @Override
-    public void action(Player player) {
+    public void action(IPlayer player) {
         state = state.Action(player , this);
     }
 
-    public void Purchase(Player player , int cost){
-        player.MoneyTransition(cost);
-        player.PurchaseSpecialTile();
+    public void Purchase(IPlayer player , int cost){
+        player.moneyTransition(cost);
+        player.purchaseSpecialTile();
         setOwner(player);
-        this.rent = player.GetNumOfSpecialTile() * rent;
+        this.rent = player.getNumOfSpecialTile() * rent;
     }
 
 }
