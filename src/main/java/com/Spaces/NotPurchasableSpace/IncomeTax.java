@@ -1,4 +1,5 @@
 package com.Spaces.NotPurchasableSpace;
+import com.Player.IPlayer;
 import com.Player.Player;
 import com.Spaces.AbstractSpace;
 
@@ -12,7 +13,7 @@ public class IncomeTax extends AbstractSpace {
     }
 
     @Override
-    public void action(Player player) {
-        player.MoneyTransition(tax);
+    public void action(IPlayer player) {
+        player.moneyTransition(tax);
     }
 }

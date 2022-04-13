@@ -12,7 +12,7 @@ public class PlayerPrison implements PlayerState{
         prisonTime = 2;
     }
     @Override
-    public boolean Play(Player player ) {
+    public boolean Play(IPlayer player ) {
         prisonTime = prisonTime - 1 ;
         return false;
     }
