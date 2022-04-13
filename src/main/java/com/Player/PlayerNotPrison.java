@@ -1,5 +1,8 @@
 package com.Player;
+import com.Spaces.Space;
 import com.utils.Dices;
+
+import java.util.List;
 
 public class PlayerNotPrison implements PlayerState{
 
@@ -10,7 +13,7 @@ public class PlayerNotPrison implements PlayerState{
     }
 
     @Override
-    public boolean Play(Player player) {
+    public boolean Play(Player player ) {
 
         if(diceThrow == 0) return false;
 

@@ -10,4 +10,5 @@ public abstract class AbstractSpace implements Space {
         return name;
     }
     public int GetPosition(){return position;}
+
 }

@@ -7,9 +7,9 @@ public class GoJail  extends AbstractSpace {
 
     private final int jailLocation = 0;
 
-    public GoJail(int pos ) {
-        name = "GoJail";
-        position = pos;
+    public GoJail(String name ,int pos  ) {
+        this.name = name;
+        this.position = pos;
     }
 
     @Override

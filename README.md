@@ -9,7 +9,7 @@ host: 144.122.71.168
 
 username: project_group4
 
-password: 9D\t?{kW
+password: prj_grp4
 
 db: project_group4
 

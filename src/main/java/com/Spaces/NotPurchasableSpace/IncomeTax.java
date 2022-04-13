@@ -6,8 +6,8 @@ public class IncomeTax extends AbstractSpace {
 
     private final int tax = -50;
 
-    public  IncomeTax(int pos){
-        name = "IncomeTax";
+    public  IncomeTax(String name ,int pos ){
+        this.name = name;
         position = pos;
     }
 

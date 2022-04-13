@@ -5,8 +5,8 @@ import com.Spaces.AbstractSpace;
 
 public class JailVisit extends AbstractSpace {
 
-    public  JailVisit(int pos){
-        name = "JailVisit";
+    public  JailVisit(String name ,int pos ){
+        this.name = name;
         position = pos;
     }
     @Override

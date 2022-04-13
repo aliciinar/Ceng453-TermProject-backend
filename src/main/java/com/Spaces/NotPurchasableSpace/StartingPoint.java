@@ -5,9 +5,9 @@ import com.Spaces.AbstractSpace;
 public class StartingPoint extends AbstractSpace {
 
 
-    public  StartingPoint(int pos){
+    public  StartingPoint(String name ,int pos ){
         position = pos;
-        name = "StartingPoint";
+        this.name = name;
     }
     @Override
     public void action(Player player) {

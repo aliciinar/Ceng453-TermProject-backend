@@ -1,5 +1,9 @@
 package com.Player;
 
+import com.Spaces.Space;
+
+import java.util.List;
+
 public class PlayerPrison implements PlayerState{
 
     private int prisonTime ;
@@ -8,7 +12,7 @@ public class PlayerPrison implements PlayerState{
         prisonTime = 2;
     }
     @Override
-    public boolean Play(Player player) {
+    public boolean Play(Player player ) {
         prisonTime = prisonTime - 1 ;
         return false;
     }
