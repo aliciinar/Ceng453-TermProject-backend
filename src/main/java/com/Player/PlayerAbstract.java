@@ -42,8 +42,8 @@ public abstract class PlayerAbstract  implements  IPlayer{
 
     @Override
     public void movePlayer(int move){
-        if(position + move >= 20 ) moneyTransition(1500);
-        position = (position + move) / 20;
+        if(position + move >= 16 ) moneyTransition(1500);
+        position = (position + move) % 16;
 
         this.spaces.get(position).action(this);
 

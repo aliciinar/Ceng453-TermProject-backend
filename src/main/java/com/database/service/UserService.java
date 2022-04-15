@@ -14,11 +14,18 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public User saveUser(User User) {
-        return repository.save(User);
+    public User saveUser(User user) {
+        if (getUserByName(user.getName()) == null){
+            repository.save(user);
+            return user;
+        }
+        else{
+            return null;
+        }
     }
 
     public List<User> saveUsers(List<User> Users) {
+
         return repository.saveAll(Users);
     }
 
@@ -39,11 +46,5 @@ public class UserService {
         return "User removed !! " + id;
     }
 
-    public User updateUser(User User) {
-        User existingUser = repository.findById(User.getId()).orElse(null);
-        existingUser.setName(User.getName());
-        existingUser.setPassword(User.getPassword());
-        existingUser.setEmail(User.getEmail());
-        return repository.save(existingUser);
-    }
+
 }

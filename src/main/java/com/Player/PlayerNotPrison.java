@@ -40,9 +40,7 @@ public class PlayerNotPrison implements PlayerState{
         else return new PlayerPrison() ;
     }
 
-    private void GetCardIndex(int pos){
 
-    }
 
 
 }

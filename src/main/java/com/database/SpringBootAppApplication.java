@@ -1,8 +1,11 @@
 package com.database;
 
 
+import com.database.controller.ScoreController;
 import com.database.controller.UserController;
+import com.database.entity.Score;
 import com.database.entity.User;
+
 
 
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
@@ -15,7 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import org.springframework.stereotype.*;
-import org.springframework.web.servlet.view.RedirectView;
+
+import java.sql.Date;
 
 @EnableEncryptableProperties
 @Controller
@@ -24,34 +28,45 @@ public class SpringBootAppApplication {
 
     @Autowired
     UserController user;
+    @Autowired
+    ScoreController score;
 
     @RequestMapping("/")
     @ResponseBody
     String home() {
-
-
         return "asd";
     }
 
     @RequestMapping("/register")
     @ResponseBody
     String register() {
-        return registerUser("sait","yes","xd");
+
+
+        System.out.println(score.getScoresLast7().size());
+
+        return "success";
     }
 
 
-    public String registerUser(String name , String password , String email){
 
-        if (user.findUserByName(name) == null){
-            user.addUser(new User(name , password , email));
-            return "User" + name + "Added";
+
+
+    public User loginUser(String name , String password){
+
+        User requestedUser = user.findUserByName(name);
+        if (requestedUser == null){
+            return null;
+        }
+        else if(requestedUser.getPassword() != password){
+            return null;
         }
         else{
-            return "User" + name + "Exists";
+            return requestedUser;
         }
 
-
     }
+
+
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootAppApplication.class, args);

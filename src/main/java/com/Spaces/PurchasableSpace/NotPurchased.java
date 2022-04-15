@@ -9,6 +9,7 @@ public class NotPurchased implements SpaceState{
         boolean purchase = player.purchaseSpace(space.cost);
 
         //Get Action From Player via GUI
+
         if(purchase) {
             space.Purchase(player , - space.GetCost());
             return new Purchased();
