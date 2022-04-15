@@ -10,7 +10,7 @@ public class PlayerNotPrison implements PlayerState{
     }
 
     @Override
-    public boolean Play(Player player ) {
+    public boolean Play(IPlayer player ) {
 
         if(diceThrow == 0) return false;
 

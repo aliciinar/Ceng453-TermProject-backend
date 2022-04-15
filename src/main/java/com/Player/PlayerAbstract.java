@@ -40,7 +40,8 @@ public abstract class PlayerAbstract  implements  IPlayer{
         money = money + amount;
     }
 
-    protected void movePlayer(int move){
+    @Override
+    public void movePlayer(int move){
         if(position + move >= 20 ) moneyTransition(1500);
         position = (position + move) / 20;
 

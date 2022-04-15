@@ -15,4 +15,6 @@ public interface IPlayer {
      boolean turn();
 
      boolean purchaseSpace(int spacePrice);
+
+     void movePlayer(int move);
 }

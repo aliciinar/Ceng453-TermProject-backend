@@ -20,11 +20,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     String name;
+    String email;
     String password;
 
-    public User(String name , String password){
+    public User(String name , String password , String email){
         this.name = name;
         this.password = password;
+        this.email = email;
     }
 
 

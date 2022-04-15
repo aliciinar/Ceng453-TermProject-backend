@@ -43,6 +43,7 @@ public class UserService {
         User existingUser = repository.findById(User.getId()).orElse(null);
         existingUser.setName(User.getName());
         existingUser.setPassword(User.getPassword());
+        existingUser.setEmail(User.getEmail());
         return repository.save(existingUser);
     }
 }
