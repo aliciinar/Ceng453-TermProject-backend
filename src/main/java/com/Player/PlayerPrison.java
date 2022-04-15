@@ -1,9 +1,5 @@
 package com.Player;
 
-import com.Spaces.Space;
-
-import java.util.List;
-
 public class PlayerPrison implements PlayerState{
 
     private int prisonTime ;

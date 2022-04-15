@@ -2,9 +2,6 @@ package com.Player;
 
 import java.util.*;
 
-import com.Spaces.Space;
-import java.util.List;
-
 public class Player extends  PlayerAbstract{
 
 

@@ -1,11 +1,11 @@
 package com.Managers;
 
-import com.Spaces.Space;
+import com.Spaces.ISpace;
 
 public class SpaceManager {
 
     private  static  SpaceManager instance = null;
-    private Space[] spaces = new Space[20];
+    private ISpace[] ISpaces = new ISpace[20];
     public  static  synchronized  SpaceManager getInstance(){
         if(instance == null){
             instance = new SpaceManager();
@@ -13,8 +13,9 @@ public class SpaceManager {
         return  instance;
     }
 
-    public  void  SetSpaces(Space[] spaces){
-        this.spaces = spaces;
+    public  void  SetSpaces(ISpace[] ISpaces){
+        this.ISpaces = ISpaces;
+
     }
 
 }

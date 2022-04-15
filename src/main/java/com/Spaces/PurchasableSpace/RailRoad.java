@@ -6,9 +6,9 @@ import com.Player.Player;
 
 public class RailRoad  extends SpaceDeed {
 
-    public  RailRoad(String name , int cost , int rent , int position){
+    public  RailRoad(String name , int cost  , int position){
        this.name = name;
-       this.rent = rent;
+       this.rent = cost / 10;
        this.cost = cost;
        this.position = position;
        state = new NotPurchased();

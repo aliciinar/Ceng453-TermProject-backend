@@ -1,6 +1,6 @@
 package com.Spaces;
 
-public abstract class AbstractSpace implements Space {
+public abstract class AbstractSpace implements ISpace {
 
     protected String name;
     protected int position;
