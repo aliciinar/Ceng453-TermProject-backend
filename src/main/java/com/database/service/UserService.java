@@ -46,5 +46,20 @@ public class UserService {
         return "User removed !! " + id;
     }
 
+    public User loginUser(String name , String password){
+
+        User requestedUser = repository.findByName(name);
+        if (requestedUser == null){
+            return null;
+        }
+        else if(requestedUser.getPassword() != password){
+            return null;
+        }
+        else{
+            return requestedUser;
+        }
+
+    }
+
 
 }
