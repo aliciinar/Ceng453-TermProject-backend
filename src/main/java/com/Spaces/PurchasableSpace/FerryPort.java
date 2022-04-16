@@ -7,9 +7,9 @@ import com.Player.Player;
 public class FerryPort extends SpaceDeed {
 
 
-    public FerryPort(String name , int cost , int rent , int position){
+    public FerryPort(String name , int cost , int position){
         this.name = name;
-        this.rent = rent;
+        this.rent = cost / 10;
         this.position = position;
         this.cost = cost;
         state = new NotPurchased();

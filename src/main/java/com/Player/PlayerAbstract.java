@@ -1,6 +1,6 @@
 package com.Player;
 
-import com.Spaces.Space;
+import com.Spaces.ISpace;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public abstract class PlayerAbstract  implements  IPlayer{
     protected int money;
     protected PlayerState state;
     protected int ownedSpecialTile = 0;
-    List<Space> spaces;
+    List<ISpace> ISpaces;
 
 
 
@@ -45,7 +45,7 @@ public abstract class PlayerAbstract  implements  IPlayer{
         if(position + move >= 16 ) moneyTransition(1500);
         position = (position + move) % 16;
 
-        this.spaces.get(position).action(this);
+        this.ISpaces.get(position).action(this);
 
     }
 

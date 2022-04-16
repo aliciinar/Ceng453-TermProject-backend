@@ -6,9 +6,9 @@ import com.Player.Player;
 
 public class Property extends SpaceDeed {
 
-    public Property(String name , int cost , int rent , int position){
+    public Property(String name , int cost  , int position){
         this.name = name;
-        this.rent = rent;
+        this.rent = cost / 10;
         this.position = position;
         this.cost = cost;
         state = new NotPurchased();
