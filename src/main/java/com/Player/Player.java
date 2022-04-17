@@ -1,9 +1,20 @@
 package com.Player;
 
+import com.Spaces.ISpace;
+
 import java.util.*;
 
 public class Player extends  PlayerAbstract{
 
+
+    public Player(int playerID , List<ISpace> spaces){
+
+        this.playerID = playerID;
+        this.position = 0;
+        this.money = 1500;
+        this.state = new PlayerNotPrison();
+        this.ISpaces = spaces;
+    }
 
     @Override
     public boolean purchaseSpace(int spacePrice) {

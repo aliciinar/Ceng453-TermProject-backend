@@ -1,4 +1,3 @@
-com\database\LeaderBoard.class
 com\Player\PlayerNotPrison.class
 com\Spaces\PurchasableSpace\SpaceState.class
 com\database\controller\UserController.class
@@ -23,11 +22,9 @@ com\Spaces\AbstractSpace.class
 com\Spaces\NotPurchasableSpace\StartingPoint.class
 com\Spaces\PurchasableSpace\RailRoad.class
 com\Player\PlayerAbstract.class
-com\database\SpringBootAppApplication.class
 com\Managers\GameManager.class
 com\Spaces\UnitTestSpaces.class
 com\Spaces\PurchasableSpace\NotPurchased.class
 com\Spaces\PurchasableSpace\SpaceDeed.class
 com\database\repository\UserRepository.class
 com\Player\IPlayer.class
-com\Spaces\Space.class

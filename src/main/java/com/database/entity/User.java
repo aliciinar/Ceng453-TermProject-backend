@@ -1,5 +1,7 @@
 package com.database.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,21 +15,30 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity // This tells Hibernate to make a table out of this class
-
+@ApiModel(value = "User Api model documentation", description = "Model")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @ApiModelProperty(value = "Unique id field of user object")
     private int id;
 
+    @OneToMany(mappedBy = "user")
+    @ApiModelProperty(value = "Unique name field of user object")
+    private Set<ScoreWeek> scoreWeeks = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
-    private Set<Score> scores = new HashSet<>();
+    @ApiModelProperty(value = "Unique name field of user object")
+    private Set<ScoreMonth> scoreMonths = new HashSet<>();
 
+    @ApiModelProperty(value = "Unique name field of user object")
     private String name;
-    private String email;
-    private String password;
 
+    @ApiModelProperty(value = "Email address field of the user")
+    private String email;
+
+    @ApiModelProperty(value = "Password field of the user")
+    private String password;
 
     public User(String name , String password , String email){
 
@@ -36,9 +47,7 @@ public class User {
         this.email = email;
     }
 
-    public Set<Score> getScores() {
-        return scores;
-    }
+
 
 
 

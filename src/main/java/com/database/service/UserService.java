@@ -14,15 +14,6 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public User saveUser(User user) {
-        if (getUserByName(user.getName()) == null){
-            repository.save(user);
-            return user;
-        }
-        else{
-            return null;
-        }
-    }
 
     public List<User> saveUsers(List<User> Users) {
 
@@ -44,6 +35,17 @@ public class UserService {
     public String deleteUser(int id) {
         repository.deleteById(id);
         return "User removed !! " + id;
+    }
+
+
+    public User registerUser(User user) {
+        if (getUserByName(user.getName()) == null){
+            repository.save(user);
+            return user;
+        }
+        else{
+            return null;
+        }
     }
 
     public User loginUser(String name , String password){

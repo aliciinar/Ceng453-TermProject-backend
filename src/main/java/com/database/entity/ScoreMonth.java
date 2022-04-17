@@ -4,16 +4,17 @@ package com.database.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Set;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity // This tells Hibernate to make a table out of this class
-public class Score {
+public class ScoreMonth {
 
 
     @Id
@@ -28,7 +29,7 @@ public class Score {
     private int score;
     private java.sql.Date sqlDate;
 
-    public Score(int score  ){
+    public ScoreMonth(int score  ){
         this.sqlDate = new java.sql.Date(System.currentTimeMillis());
         this.score = score;
         this.sqlDate = sqlDate;

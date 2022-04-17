@@ -2,47 +2,45 @@ package com.database.controller;
 
 import com.database.entity.User;
 import com.database.service.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Api(value = "User Api documentation")
 public class UserController {
 
     @Autowired
     private UserService service;
 
+    @ApiOperation(value = "New User adding method")
     @PostMapping("/addUser")
     public User addUser(@RequestBody User User) {
-        return service.saveUser(User);
+        return service.registerUser(User);
     }
 
-    @PostMapping("/addUsers")
-    public List<User> addUsers(@RequestBody List<User> Users) {
-        return service.saveUsers(Users);
-    }
-
+    @ApiOperation(value = "Getting all the users method")
     @GetMapping("/Users")
     public List<User> findAllUsers() {
         return service.getUsers();
     }
 
+    @ApiOperation(value = "Getting the user by given ID")
     @GetMapping("/UserById/{id}")
     public User findUserById(@PathVariable int id) {
         return service.getUserById(id);
     }
 
+    @ApiOperation(value = "Getting the user by given name")
     @GetMapping("/User/{name}")
     public User findUserByName(@PathVariable String name) {
         return service.getUserByName(name);
     }
 
-    @DeleteMapping("User/delete/{id}")
-    public String deleteUser(@PathVariable int id) {
-        return service.deleteUser(id);
-    }
-
-    @GetMapping("User/login/{name , password}")
+    @ApiOperation(value = "Login the user by given name and password")
+    @GetMapping("User/login/{name}/{password}")
     public User loginUser(@PathVariable String name , @PathVariable String password){return service.loginUser(name , password);}
 }

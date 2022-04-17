@@ -16,3 +16,11 @@ db: project_group4
 port: 3306
 
 \connect project_group4@144.122.71.168
+
+#TO-DO
+
+Add Unit Tests
+
+Add JavaDocs
+
+Add GetUserActionMethod

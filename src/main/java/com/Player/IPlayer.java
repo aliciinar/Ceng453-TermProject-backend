@@ -1,5 +1,10 @@
 package com.Player;
 
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
+
 public interface IPlayer {
 
      int getMoney();
