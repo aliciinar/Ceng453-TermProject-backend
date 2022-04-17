@@ -16,6 +16,7 @@ com\Spaces\PurchasableSpace\Property.class
 com\Managers\SpaceManager.class
 com\Player\BotAI.class
 com\Player\PlayerPrison.class
+com\database\security\SecurityConfig.class
 com\Spaces\NotPurchasableSpace\GoJail.class
 com\Spaces\PurchasableSpace\FerryPort.class
 com\Spaces\AbstractSpace.class
