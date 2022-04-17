@@ -3,10 +3,14 @@ package com.database.controller;
 import com.database.entity.Score;
 import com.database.entity.User;
 import com.database.service.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ScoreController {
@@ -14,9 +18,10 @@ public class ScoreController {
     @Autowired
     private ScoreService service;
 
-    @PostMapping("/addScore")
-    public Score addScore(@RequestBody Score Score , User user) {
-        return service.saveScore(Score , user);
+    @PostMapping("/user/addScore/{id}")
+    @Fetch(value= FetchMode.SELECT)
+    public Score addScore(@RequestBody Score Score , @PathVariable String id) {
+        return service.saveScore(Score , id);
     }
 
     @PostMapping("/addScores")
@@ -40,6 +45,9 @@ public class ScoreController {
     }
 
     @GetMapping("/ScoresLast7")
-    public List<Score> getScoresLast7(){ return service.getScoresLast7(); }
+    public List<Map<Integer, Long>> getScoresLast7(){ return service.getLastWeekScore(); }
+
+    @GetMapping("/GetAll")
+    public List<Score> getAllScores(){ return service.getAllResults(); }
 
 }

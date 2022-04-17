@@ -1,11 +1,15 @@
 package com.database.entity;
 
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Set;
 
 
@@ -20,18 +24,18 @@ public class Score {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-
+    @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private  User user;
 
     private int score;
-    private java.sql.Date sqlDate;
+    private Date sqlDate;
 
     public Score(int score  ){
-        this.sqlDate = new java.sql.Date(System.currentTimeMillis());
+        this.sqlDate = Date.valueOf(LocalDate.now());
+        System.out.println(sqlDate);
         this.score = score;
-        this.sqlDate = sqlDate;
     }
 
     public User getUser() {

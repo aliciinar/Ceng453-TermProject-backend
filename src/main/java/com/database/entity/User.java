@@ -1,8 +1,10 @@
 package com.database.entity;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -27,6 +29,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private String role;
 
 
     public User(String name , String password , String email){
@@ -35,6 +38,9 @@ public class User {
         this.password = password;
         this.email = email;
     }
+
+
+
 
     public Set<Score> getScores() {
         return scores;

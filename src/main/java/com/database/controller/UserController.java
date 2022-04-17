@@ -15,6 +15,7 @@ public class UserController {
 
     @PostMapping("/addUser")
     public User addUser(@RequestBody User User) {
+        System.out.println("Post geldi");
         return service.saveUser(User);
     }
 
@@ -43,6 +44,6 @@ public class UserController {
         return service.deleteUser(id);
     }
 
-    @GetMapping("User/login/{name , password}")
+    @GetMapping("User/login/{name}")
     public User loginUser(@PathVariable String name , @PathVariable String password){return service.loginUser(name , password);}
 }
