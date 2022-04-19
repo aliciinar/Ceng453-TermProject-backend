@@ -40,11 +40,22 @@ public class User {
     @ApiModelProperty(value = "Password field of the user")
     private String password;
 
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public User(String name , String password , String email){
 
         this.name = name;
         this.password = password;
         this.email = email;
+        this.role = "User";
     }
 
 
