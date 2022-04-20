@@ -4,6 +4,7 @@ import com.database.entity.User;
 import com.database.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class UserController {
 
     //@ApiOperation(value = "New User adding method")
     @PostMapping("/login")
-    public User login(Authentication authentication) {
-        return service.loginUser(authentication);
+    public ResponseEntity<String> login(User user) {
+        return service.loginUser(user);
     }
 
     @ApiOperation(value = "Getting all the users method")
