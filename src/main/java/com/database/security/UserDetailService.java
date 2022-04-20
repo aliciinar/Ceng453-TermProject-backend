@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.User;
 
+import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -27,18 +30,21 @@ public class UserDetailService  implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println(username);
         System.out.println("User Details");
         com.database.entity.User  player = userRepository.findByName(username);
-      /*  if(player ==null) {
+        if(player ==null) {
             throw new UsernameNotFoundException("User Not Found");
-        }*/
-
-       return toUserDetails(player);
+        }
+        return new User(player.getName(),player.getPassword(),new ArrayList<>());
+      // return toUserDetails(player);
     }
+
 
     private UserDetails toUserDetails(com.database.entity.User  user) {
         /* withDefaultPasswordEncoder hashes the password, creates authority list and returns a valid User */
-        return User.withDefaultPasswordEncoder()
+        System.out.println("User dön bana");
+        return User.withUsername(user.getName())
                 .username(user.getName())
                 .password(user.getPassword())
                 .roles(user.getRole())
