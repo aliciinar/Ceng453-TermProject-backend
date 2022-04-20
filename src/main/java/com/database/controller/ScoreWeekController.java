@@ -23,12 +23,6 @@ public class ScoreWeekController {
         return service.saveScore(ScoreWeek, user);
     }
 
-    @ApiOperation(value = "New Scores adding method")
-    @PostMapping("/addScoresWeek")
-    public List<ScoreWeek> addScores(@RequestBody List<ScoreWeek> scoreWeeks) {
-        return service.saveScores(scoreWeeks);
-    }
-
     @ApiOperation(value = "Getting all the scores method")
     @GetMapping("/ScoresWeek")
     public List<ScoreWeek> findAllScores() {

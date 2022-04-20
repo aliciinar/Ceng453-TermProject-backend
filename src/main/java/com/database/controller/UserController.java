@@ -18,11 +18,6 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @ApiOperation(value = "New User adding method")
-    @PostMapping("/addUser")
-    public User addUser(@RequestBody User User) {
-        return service.registerUser(User);
-    }
 
    // @ApiOperation(value = "New User adding method")
     @PostMapping("/register")
@@ -30,7 +25,11 @@ public class UserController {
         return service.registerUser(User);
     }
 
-
+    @ApiOperation(value = "Deleting the user with given id")
+    @DeleteMapping("/delete/{id}")
+    public String deleteUser(@PathVariable int id) {
+        return service.deleteUser(id);
+    }
 
     //@ApiOperation(value = "New User adding method")
     @PostMapping("/login")

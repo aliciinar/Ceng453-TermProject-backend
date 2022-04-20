@@ -14,13 +14,16 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.Authentication;
+import org.springframework.util.Assert;
 
 
 import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class UserService  {
-
+    /**
+     *
+     */
 
     private final   PasswordEncoder passwordEncoder;
     private final AuthenticationProvider authenticationProvider;
@@ -31,18 +34,20 @@ public class UserService  {
     @Autowired
     UserDetailService userDetailService;
 
-
-    public List<User> saveUsers(List<User> Users) {
-
-        return repository.saveAll(Users);
-    }
-
+    /**
+     *
+     * @return all the users from user table
+     */
     public List<User> getUsers() {
         return repository.findAll();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public User getUserById(int id) {
-        //return repository.findById(id).orElse(null);
         return repository.findById(id);
     }
 
@@ -51,21 +56,36 @@ public class UserService  {
     }
 
     public String deleteUser(int id) {
-        repository.deleteById(id);
+
+        try {
+            repository.deleteById(id);
+        }
+        catch (Exception e){
+            System.out.println("Deletion Failed");
+            return "User not removed";
+        }
+        System.out.println("Deletion Success");
         return "User removed !! " + id;
     }
 
 
     public User registerUser(User user) {
-        if(ValidateUser(user)){
-            user.setRole("User");
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            repository.save(user);
-            return  user;
+
+        try{
+            validateUserLogin(user);
         }
-        else{
+        catch (Exception e) {
+            System.out.println(e);
+            System.out.println("User " + user.getName() + " could not be added");
             return null;
         }
+
+        user.setRole("User");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        repository.save(user);
+        System.out.println("User " + user.getName() + " added");
+        return user;
+
     }
 
 
@@ -87,25 +107,20 @@ public class UserService  {
 
     }
 
-    private Boolean ValidateUser(User user){
-        StringBuilder result = new StringBuilder();
-         if(user == null){
+    private void validateUserLogin(User user){
 
-             return false;
-         }
-         else{
-             if(user.getName() == null){
-                 return false;
-             }
-             else if( user.getPassword() == null){
-                 return  false;
-             }
-             else if( user.getEmail() == null){
-                 return  false;
-             }
+        Assert.notNull(user , "Null User");
+        Assert.notNull(user.getName() , "Null User Name");
+        Assert.notNull(user.getPassword() , "Null User Password");
+        Assert.notNull(user.getEmail() , "Null User Email");
+        Assert.isNull(getUserByName(user.getName()) , "User exists");
 
-         }
-         return true;
+    }
+
+    private void validateUserRegister(User user , String password){
+        Assert.notNull(user , "Wrong Password or User Name");
+        Assert.isTrue(user.getPassword() == password , "Wrong Password or User Name") ;
+        Assert.isTrue(user.isVerified() , "User is Not Verified");
     }
 
 

@@ -7,6 +7,7 @@ import com.database.repository.ScoreWeekRepository;
 import com.database.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -21,12 +22,24 @@ public class ScoreWeekService {
     private UserRepository userRepository;
 
     public ScoreWeek saveScore(ScoreWeek scoreWeek, User user) {
+        try {
+            validateUserAndScore(scoreWeek , user);
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+
         assignUserToScore(scoreWeek, user);
+        System.out.println("Score Added Successfully");
         return scoreWeekRepository.save(scoreWeek);
     }
 
-    public List<ScoreWeek> saveScores(List<ScoreWeek> scoreWeeks) {
-        return scoreWeekRepository.saveAll(scoreWeeks);
+    private void validateUserAndScore(ScoreWeek score , User user){
+
+        Assert.notNull(user , "User is null.");
+        Assert.notNull(score , "Score is null.");
+
     }
 
     public List<ScoreWeek> getScores() {

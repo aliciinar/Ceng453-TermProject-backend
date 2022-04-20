@@ -10,24 +10,28 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller class for ScoreMonth table
+ */
 @RestController
 @Api(value = "MonthlyScores Api documentation")
 public class ScoreMonthController {
 
     @Autowired
-    private ScoreMonthService service;
+    private ScoreMonthService service; // Service Class for ScoreMonth table
 
+    /**
+     * Add row to the ScoreMonth table with .
+     * @param ScoreMonth entity which is going to be added
+     * @param user entity
+     * @return
+     */
     @ApiOperation(value = "New Score adding method")
     @PostMapping("/addScoreMonth")
-    public ScoreMonth addScore(@RequestBody ScoreMonth ScoreMonth, User user) {
+    public ScoreMonth addScore(@RequestBody ScoreMonth ScoreMonth, @RequestBody User user) {
         return service.saveScore(ScoreMonth, user);
     }
 
-    @ApiOperation(value = "New Scores adding method")
-    @PostMapping("/addScoresMonth")
-    public List<ScoreMonth> addScores(@RequestBody List<ScoreMonth> scoreMonths) {
-        return service.saveScores(scoreMonths);
-    }
 
     @ApiOperation(value = "Getting all the scores method")
     @GetMapping("/ScoresMonth")

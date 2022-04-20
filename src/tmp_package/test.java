@@ -1,13 +1,13 @@
-package com.Spaces;
+package com.frontend.Spaces;
 
-import com.Managers.SpaceManager;
-import com.Spaces.NotPurchasableSpace.GoJail;
-import com.Spaces.NotPurchasableSpace.IncomeTax;
-import com.Spaces.NotPurchasableSpace.JailVisit;
-import com.Spaces.NotPurchasableSpace.StartingPoint;
-import com.Spaces.PurchasableSpace.FerryPort;
-import com.Spaces.PurchasableSpace.Properties;
-import com.Spaces.PurchasableSpace.RailRoad;
+import com.frontend.Managers.SpaceManager;
+import com.frontend.Spaces.NotPurchasableSpace.GoJail;
+import com.frontend.Spaces.NotPurchasableSpace.IncomeTax;
+import com.frontend.Spaces.NotPurchasableSpace.JailVisit;
+import com.frontend.Spaces.NotPurchasableSpace.StartingPoint;
+import com.frontend.Spaces.PurchasableSpace.FerryPort;
+import com.frontend.Spaces.PurchasableSpace.Properties;
+import com.frontend.Spaces.PurchasableSpace.RailRoad;
 
 import java.util.ArrayList;
 import java.util.HashMap;
