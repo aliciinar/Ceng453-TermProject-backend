@@ -34,7 +34,7 @@ public class UserController {
 
     //@ApiOperation(value = "New User adding method")
     @PostMapping("/login")
-    public ResponseEntity<String> login(User user) {
+    public ResponseEntity<String> login(@RequestBody User user) {
         return service.loginUser(user);
     }
 

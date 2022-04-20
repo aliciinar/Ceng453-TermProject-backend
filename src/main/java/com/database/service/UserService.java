@@ -108,6 +108,7 @@ public class UserService  {
 
         } catch (AuthenticationException e) {
             System.out.println("Hata var");
+            System.out.println(e);
             throw e;
         }
     }
