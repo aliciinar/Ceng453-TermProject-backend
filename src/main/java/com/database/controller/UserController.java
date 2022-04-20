@@ -44,6 +44,8 @@ public class UserController {
         return service.getUsers();
     }
 
+
+
     @ApiOperation(value = "Getting the user by given ID")
     @GetMapping("/UserById/{id}")
     public User findUserById(@PathVariable int id) {
@@ -56,7 +58,8 @@ public class UserController {
         return service.getUserByName(name);
     }
 
-    /*@ApiOperation(value = "Login the user by given name and password")
-    @GetMapping("User/login/{name}/{password}")
-    public User loginUser(@PathVariable String name , @PathVariable String password){return service.loginUser(name , password);}*/
+    @PutMapping("/update")
+    public User updateUser( @RequestBody String userName , @RequestBody String newPassword) {
+        return service.updateUser(userName , newPassword);
+    }
 }

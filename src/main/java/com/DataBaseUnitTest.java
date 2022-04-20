@@ -1,6 +1,7 @@
-package com.database;
+package com;
 
 
+import com.database.controller.ForgotPasswordController;
 import com.database.controller.ScoreMonthController;
 import com.database.controller.ScoreWeekController;
 import com.database.controller.UserController;
@@ -36,6 +37,9 @@ public class DataBaseUnitTest {
     @Autowired
     ScoreMonthController sm;
 
+    @Autowired
+    ForgotPasswordController pc;
+
     @RequestMapping("/")
     @ResponseBody
     void home() {
@@ -70,8 +74,10 @@ public class DataBaseUnitTest {
             System.out.println("User Not Found");
         }
 
-        User user = new User("UserTest2" , "UserTest2");
-        System.out.println(uc.login(user));
+        User user = uc.findUserByName("UserTest2");
+        System.out.println(user.getPassword());
+        pc.processResetPassword("UserTest2" , "12345");
+        System.out.println(user.getPassword());
         System.out.println("<<<<<Task TestUserTable Finished ");
 
     }

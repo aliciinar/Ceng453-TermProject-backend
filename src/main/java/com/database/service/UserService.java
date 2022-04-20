@@ -4,8 +4,15 @@ import com.database.entity.User;
 import com.database.repository.UserRepository;
 import com.database.security.TokenManager;
 import com.database.security.UserDetailService;
+import com.mail.Mail;
+
+
+import com.mail.MailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +30,7 @@ import org.springframework.util.Assert;
 import java.util.List;
 @RequiredArgsConstructor
 @Service
+
 public class UserService  {
     /**
      *
@@ -39,6 +47,7 @@ public class UserService  {
 
     @Autowired
     UserDetailService userDetailService;
+
 
     /**
      *
@@ -95,6 +104,8 @@ public class UserService  {
     }
 
 
+
+
     public ResponseEntity<String> loginUser(User user){
           User optionalPlayer = repository.findByName(user.getName());
         // Authentication authentication = new UsernamePasswordAuthenticationToken(user.getName(),user.getPassword());
@@ -132,4 +143,9 @@ public class UserService  {
     }
 
 
+    public User updateUser(String userName , String password) {
+        User existingUser = repository.findByName(userName);
+        existingUser.setPassword(passwordEncoder.encode(password));
+        return repository.save(existingUser);
+    }
 }
