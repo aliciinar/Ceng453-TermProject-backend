@@ -2,14 +2,17 @@ package com.database.service;
 
 import com.database.entity.User;
 import com.database.repository.UserRepository;
+import com.database.security.TokenManager;
 import com.database.security.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,9 @@ public class UserService  {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    TokenManager tokenManager;
 
     @Autowired
     UserDetailService userDetailService;
@@ -89,23 +95,23 @@ public class UserService  {
     }
 
 
-    public User loginUser(Authentication authentication){
-        System.out.println("login deneme");
-       User user = (User) authentication.getPrincipal();
-       // Authentication authentication = new UsernamePasswordAuthenticationToken(user.getName(),user.getPassword());
-       // Authentication authenticatePlayer =authenticationProvider.authenticate(authentication);
-       User requestedUser = repository.findByName(user.getName());
-        System.out.println("bulundu");
+    public ResponseEntity<String> loginUser(User user){
+          User optionalPlayer = repository.findByName(user.getName());
+        // Authentication authentication = new UsernamePasswordAuthenticationToken(user.getName(),user.getPassword());
+        // Authentication authenticatePlayer =authenticationProvider.authenticate(authentication);
+        System.out.println("Buraya geldi");
+        try {
+            Authentication authentication =  authenticationProvider.authenticate(
+                    new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword()));
 
-        if (requestedUser == null){
-            return null;
+            return ResponseEntity.ok(tokenManager.generateToken(user.getName()));
+
+        } catch (AuthenticationException e) {
+            System.out.println("Hata var");
+            throw e;
         }
-        else{
-
-            return  requestedUser;
-        }
-
     }
+
 
     private void validateUserLogin(User user){
 
