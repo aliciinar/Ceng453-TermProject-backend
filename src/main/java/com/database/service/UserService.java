@@ -78,7 +78,7 @@ public class UserService  {
     public User registerUser(User user) {
 
         try{
-            validateUserLogin(user);
+            validateUserRegister(user);
         }
         catch (Exception e) {
             System.out.println(e);
@@ -114,7 +114,7 @@ public class UserService  {
     }
 
 
-    private void validateUserLogin(User user){
+    private void validateUserRegister(User user){
 
         Assert.notNull(user , "Null User");
         Assert.notNull(user.getName() , "Null User Name");
@@ -124,9 +124,10 @@ public class UserService  {
 
     }
 
-    private void validateUserRegister(User user , String password){
-        Assert.notNull(user , "Wrong Password or User Name");
-        Assert.isTrue(user.getPassword() == password , "Wrong Password or User Name") ;
+    private void validateUserLogin(User user){
+        Assert.notNull(user , "Null User");
+        Assert.notNull(user.getName() , "Null User Name");
+        Assert.notNull(user.getPassword() , "Null User Password");
         Assert.isTrue(user.isVerified() , "User is Not Verified");
     }
 

@@ -10,7 +10,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * User Entity for user table
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,11 +23,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(value = "Unique id field of user object")
-    private int id;
+    private int id; //Unique id value for user
 
     @OneToMany(mappedBy = "user")
     @ApiModelProperty(value = "Unique name field of user object")
-    private Set<ScoreWeek> scoreWeeks = new HashSet<>();
+    private Set<ScoreWeek> scoreWeeks = new HashSet<>(); //Users
 
     @OneToMany(mappedBy = "user")
     @ApiModelProperty(value = "Unique name field of user object")
@@ -52,6 +54,11 @@ public class User {
         this.email = email;
         this.role = "User";
         this.verified = false;
+    }
+
+    public User(String name , String password){
+        this.name = name;
+        this.password = password;
     }
 
 

@@ -4,8 +4,7 @@ package com.database.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+
 
 import javax.persistence.*;
 
@@ -19,29 +18,27 @@ public class ScoreMonth {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int id; // Unique id of the ScoreMonth Entity
 
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private  User user;
+    private  User user; // Referenced User
 
-    private int score;
-    private java.sql.Date sqlDate;
+    private int score; // Score value
+    private java.sql.Date sqlDate; // Score addition date
 
+    /**
+     * Initialize Score month entity with the given score and current date.
+     * @param score of the game
+     */
     public ScoreMonth(int score  ){
         this.sqlDate = new java.sql.Date(System.currentTimeMillis());
         this.score = score;
         this.sqlDate = sqlDate;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
 
 

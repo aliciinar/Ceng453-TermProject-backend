@@ -70,7 +70,8 @@ public class DataBaseUnitTest {
             System.out.println("User Not Found");
         }
 
-
+        User user = new User("UserTest2" , "UserTest2");
+        System.out.println(uc.login(user));
         System.out.println("<<<<<Task TestUserTable Finished ");
 
     }
