@@ -29,7 +29,7 @@ public class User {
     @ApiModelProperty(value = "Unique name field of user object")
     private Set<ScoreWeek> scoreWeeks = new HashSet<>(); //Users
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user" )
     @ApiModelProperty(value = "Unique name field of user object")
     private Set<ScoreMonth> scoreMonths = new HashSet<>();
 

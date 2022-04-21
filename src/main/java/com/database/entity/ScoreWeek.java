@@ -24,7 +24,7 @@ public class ScoreWeek {
     private int id;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private  User user;
 

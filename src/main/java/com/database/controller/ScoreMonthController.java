@@ -40,6 +40,7 @@ public class ScoreMonthController {
     @ApiOperation(value = "Getting all the scores method")
     @GetMapping("/ScoresMonth")
     public List<ScoreMonth> findAllScores() {
+
         return service.getScores();
     }
 
@@ -63,6 +64,8 @@ public class ScoreMonthController {
     public String updateScores() {
         return service.updateScores();
     }
+
+
 
 
 

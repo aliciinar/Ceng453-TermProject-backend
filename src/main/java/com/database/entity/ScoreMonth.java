@@ -23,7 +23,7 @@ public class ScoreMonth {
     private int id; // Unique id of the ScoreMonth Entity
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private  User user; // Referenced User
 

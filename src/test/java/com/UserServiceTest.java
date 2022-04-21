@@ -36,6 +36,7 @@ public  class UserServiceTest {
     public void RegisterSuccessTest() {
 
         System.out.println(userController.register("Ali","Veli","UmudunutKaybetme"));
+        userController.updateUser("UserTest","UserTest");
 
 
     }

@@ -1,7 +1,9 @@
 package com;
 
 
+import com.database.controller.ScoreWeekController;
 import com.database.controller.UserController;
+import com.database.entity.ScoreWeek;
 import com.database.entity.User;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +27,16 @@ public class SpringBoot {
     @Autowired
     private UserController userService;
 
+    @Autowired
+    private ScoreWeekController sw;
 
     @RequestMapping("/")
     @ResponseBody
     void home() {
 
-
+        User testUser = userService.findUserByName("UserTest");
+        userService.updateUser("UserTest","UserTest");
+        sw.addScore(new ScoreWeek(12) , testUser);
 
     }
 
