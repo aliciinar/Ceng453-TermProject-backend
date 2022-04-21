@@ -17,10 +17,6 @@ port: 3306
 
 \connect project_group4@144.122.71.168
 
-#TO-DO
+#Documentation
 
-Add Unit Tests
-
-Add JavaDocs
-
-Add GetUserActionMethod
+Swagger Documentation at /v2/api-docs

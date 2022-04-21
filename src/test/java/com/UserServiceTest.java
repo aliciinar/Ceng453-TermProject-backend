@@ -1,17 +1,19 @@
 package com;
+import com.database.controller.UserController;
 import com.database.entity.User;
 import com.database.repository.UserRepository;
-import com.database.service.UserService;
+import com.database.security.TokenManager;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import static org.mockito.AdditionalAnswers.returnsFirstArg;
+
 import static org.mockito.Mockito.when;
 
 
@@ -19,43 +21,34 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public  class UserServiceTest {
 
-    @InjectMocks
-    private UserService userService;
+    @Autowired
+    private com.database.controller.UserController userController;
 
-    @MockBean
+    @InjectMocks
+    private TokenManager tokenManager;
+
+    @Autowired
     private UserRepository userRepository;
 
-    @Before
-    public void setUp() {
-        userRepository = Mockito.mock(UserRepository.class);
-        userService = Mockito.mock(UserService.class);
-    }
+
 
     @Test
     public void RegisterSuccessTest() {
 
-        User response;
-        User user = new User("UserTest", "UserTester", "saitsutss@gmail.com");
-        when(userService.registerUser(user)).thenReturn(user);
-        response = userService.registerUser(user);
-        Assertions.assertEquals(user.getName(), response.getName());
-        User user2 = new User(null, "UserTest2", "saitsutss@gmail.com");
-        when(userService.registerUser(user)).thenReturn(user2);
-        response = userService.registerUser(user);
-        Assertions.assertNull(response.getName());
+        System.out.println(userController.register("Ali","Veli","UmudunutKaybetme"));
+
 
     }
 
 
     @Test
     public void LoginSuccessTest() {
-        User user = new User("UserTest", "UserTester", "saitsutss@gmail.com");
-        System.out.println(userService.loginUser(new User("UserTest2","UserTest2")));
-        Assertions.assertNotNull(userService.loginUser(new User("UserTest2","UserTest2")));
+
+
+        System.out.println(userController.login(new User("UserTest3","UserTest3"))) ;
+
     }
 
-    public void resetPassword(){
-        userService.updateUser("UserTest2","UserTest2");
-    }
+
 }
 

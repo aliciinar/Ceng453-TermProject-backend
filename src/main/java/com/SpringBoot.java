@@ -1,8 +1,8 @@
 package com;
 
 
+import com.database.controller.UserController;
 import com.database.entity.User;
-import com.database.service.UserService;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -22,11 +22,15 @@ import org.springframework.stereotype.*;
 
 public class SpringBoot {
 
+    @Autowired
+    private UserController userService;
 
 
     @RequestMapping("/")
     @ResponseBody
     void home() {
+
+
 
     }
 

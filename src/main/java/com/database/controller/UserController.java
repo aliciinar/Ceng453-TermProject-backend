@@ -1,11 +1,10 @@
 package com.database.controller;
 
 import com.database.entity.User;
-import com.database.service.*;
+import com.database.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,17 +18,15 @@ public class UserController {
     @Autowired
     private UserService service; // User service for controller
 
-    /**
-     *  New user register method.
-     *  If given user is not proper it throws an exception.
-     * @param User New User
-     * @return return new User if a user added to the table. Else returns null.
-     */
+
     @ApiOperation(value = "Registering new User method")
     @PostMapping("/register")
-    public User register(@RequestBody User User) {
-        return service.registerUser(User);
+    public User register(@RequestBody String name , @RequestBody String password , @RequestBody String email) {
+
+        return service.registerUser(name , password , email);
     }
+
+
 
     /**
      * Delete user who has the given id.

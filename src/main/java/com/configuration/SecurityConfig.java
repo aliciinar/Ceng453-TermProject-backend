@@ -1,7 +1,8 @@
-package com.database.security;
+package com.configuration;
 
 
 import com.database.entity.User;
+import com.database.security.JwtTokenFilter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -46,13 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/").permitAll()
                 .antMatchers(HttpMethod.POST,"/register").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/v2/api-docs").permitAll()
+                .antMatchers("/v2/api-docs" , "/swagger-resources/**" , "/swagger-ui.html**","/webjars/**").permitAll()
 
-                .anyRequest()
-                .authenticated()
+
+                .anyRequest().authenticated()
                 .and()
-                .httpBasic()
-                .and()
+
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
@@ -64,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Bean
     public PasswordEncoder passwordEncoder(){
+
         return new BCryptPasswordEncoder();
     }
 
@@ -78,24 +79,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
-        System.out.println("AUthentication");
         var daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;
     }
 
-    /*@Override
-    public void configure(WebSecurity web) throws Exception {
-        /* Swagger Doc and User Registration requests shouldn't be authenticated at all
-        web.ignoring().antMatchers("register",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/webjars/**",
-                "/register");
-    }*/
+
 
 
 

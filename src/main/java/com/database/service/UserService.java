@@ -4,26 +4,15 @@ import com.database.entity.User;
 import com.database.repository.UserRepository;
 import com.database.security.TokenManager;
 import com.database.security.UserDetailService;
-import com.mail.Mail;
 
 
-import com.mail.MailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.Authentication;
 import org.springframework.util.Assert;
 
 
@@ -33,7 +22,7 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 @Service
-public class UserService  {
+public class UserService {
 
     private final   PasswordEncoder passwordEncoder;
     private final AuthenticationProvider authenticationProvider;
@@ -83,8 +72,9 @@ public class UserService  {
     }
 
 
-    public User registerUser(User user) {
+    public User registerUser(String name , String password , String email) {
 
+        User user = new User(name , password , email);
         try{
             validateUserRegister(user);
         }
@@ -106,17 +96,16 @@ public class UserService  {
 
 
     public ResponseEntity<String> loginUser(User user){
-        User optionalPlayer = repository.findByName(user.getName());
+
 
         try {
+            System.out.println(user.getPassword());
             validateUserLogin(user);
-            Authentication authentication =  authenticationProvider.authenticate(
-                    new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword()));
-
+            authenticationProvider.authenticate(new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword()));
             return ResponseEntity.ok(tokenManager.generateToken(user.getName()));
 
-        } catch (AuthenticationException e) {
-
+        }
+        catch (Exception e){
             System.out.println(e);
             throw e;
         }
