@@ -1,7 +1,4 @@
 # Ceng453-TermProject-Group-4-backend
-Test Heroku
-
-
 
 #Database 
 
@@ -15,8 +12,16 @@ db: project_group4
 
 port: 3306
 
-\connect project_group4@144.122.71.168
+![Screenshot](src/dataBase.png)
 
 #Documentation
 
-Swagger Documentation at /v2/api-docs
+Swagger Documentation at /v2/api-docs and [[Swagger UI](src/index.html)]
+
+Tests are at src/test/java/com
+
+
+
+
+
+
