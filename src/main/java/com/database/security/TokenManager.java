@@ -9,12 +9,21 @@ import java.security.Key;
 import java.util.Date;
 import org.springframework.stereotype.Service;
 
+/**
+ * This class is implementing JSON Web Tokens. Thanks to the JWTS information can send more securely.
+ */
 @Service
 public class TokenManager {
 
-    private static final int validity =7 * 24 * 60 * 60 * 1000;
-    Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private static final int validity =7 * 24 * 60 * 60 * 1000; // expiration time of generated token.
+    Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256); //
 
+
+    /**
+     * Create token with specified key and with determined expiration time.
+     * @param username
+     * @return
+     */
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
@@ -24,6 +33,12 @@ public class TokenManager {
                 .compact();
     }
 
+
+    /**
+     * Check whether the token is  not null and not expired
+     * @param token
+     * @return
+     */
     public boolean tokenValidate(String token) {
         if (getUsernameToken(token) != null && isExpired(token)) {
             return true;
@@ -36,6 +51,11 @@ public class TokenManager {
         return claims.getSubject();
     }
 
+    /**
+     * Check whether the token is expired or not
+     * @param token
+     * @return
+     */
     public boolean isExpired(String token) {
         Claims claims = getClaims(token);
         return claims.getExpiration().after(new Date(System.currentTimeMillis()));
