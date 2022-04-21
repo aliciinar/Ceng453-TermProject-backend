@@ -16,7 +16,7 @@ port: 3306
 
 #Documentation
 
-Swagger Documentation at /v2/api-docs and [[Swagger UI](src/html2-client/index.html)]
+Swagger Documentation at /v2/api-docs and [[Swagger UI](src/index.html)]
 
 Tests are at src/test/java/com
 
