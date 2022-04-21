@@ -9,7 +9,9 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
-
+/**
+ * ScoreWeek Table
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,13 +37,7 @@ public class ScoreWeek {
         this.sqlDate = sqlDate;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
 
 

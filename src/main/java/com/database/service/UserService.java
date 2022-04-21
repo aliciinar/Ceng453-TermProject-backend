@@ -28,13 +28,12 @@ import org.springframework.util.Assert;
 
 
 import java.util.List;
+/**
+ * User service for user table
+ */
 @RequiredArgsConstructor
 @Service
-
 public class UserService  {
-    /**
-     *
-     */
 
     private final   PasswordEncoder passwordEncoder;
     private final AuthenticationProvider authenticationProvider;
@@ -108,17 +107,16 @@ public class UserService  {
 
     public ResponseEntity<String> loginUser(User user){
           User optionalPlayer = repository.findByName(user.getName());
-        // Authentication authentication = new UsernamePasswordAuthenticationToken(user.getName(),user.getPassword());
-        // Authentication authenticatePlayer =authenticationProvider.authenticate(authentication);
-        System.out.println("Buraya geldi");
+
         try {
+            validateUserLogin(user);
             Authentication authentication =  authenticationProvider.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword()));
 
             return ResponseEntity.ok(tokenManager.generateToken(user.getName()));
 
         } catch (AuthenticationException e) {
-            System.out.println("Hata var");
+
             System.out.println(e);
             throw e;
         }

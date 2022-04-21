@@ -14,16 +14,16 @@ import java.util.List;
  * Controller class for ScoreMonth table
  */
 @RestController
-@Api(value = "MonthlyScores Api documentation")
+@Api(value = "ScoreMonth table controller documentation")
 public class ScoreMonthController {
 
     @Autowired
     private ScoreMonthService service; // Service Class for ScoreMonth table
 
     /**
-     * Add row to the ScoreMonth table with .
-     * @param ScoreMonth entity which is going to be added
-     * @param user entity
+     * Add row to the ScoreMonth table. User id refers to User entity
+     * @param ScoreMonth ScoreMonth entity which is going to be added to the database
+     * @param user User entity who has the score
      * @return
      */
     @ApiOperation(value = "New Score adding method")
@@ -33,18 +33,31 @@ public class ScoreMonthController {
     }
 
 
+    /**
+     *
+     * @return All the scores from ScoreMonth table.
+     */
     @ApiOperation(value = "Getting all the scores method")
     @GetMapping("/ScoresMonth")
     public List<ScoreMonth> findAllScores() {
         return service.getScores();
     }
 
+    /**
+     *
+     * @param id id of the wanted user
+     * @return User with the given id
+     */
     @ApiOperation(value = "Getting score by id method")
     @GetMapping("/ScoreMonthById/{id}")
     public ScoreMonth findScoreById(@PathVariable int id) {
         return service.getScoreById(id);
     }
 
+    /**
+     * It updates the ScoreMonth table so that it only holds the entities of the last 28 day
+     * @return
+     */
     @ApiOperation(value = "Updating monthly score table so that it is only contains scores of the last 7*4 day")
     @DeleteMapping("ScoreMonth/update/")
     public String updateScores() {

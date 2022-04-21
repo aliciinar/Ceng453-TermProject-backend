@@ -1,4 +1,4 @@
-package com.mail;
+package com.configuration;
 
 import java.util.Properties;
 
@@ -9,6 +9,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+/**
+ * Configuration file for mail extension
+ */
 @Configuration
 public class MailConfiguration {
 

@@ -11,8 +11,10 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
+/**
+ * Service for ScoreWeek Table
+ */
 @Service
-
 public class ScoreWeekService {
 
     @Autowired
@@ -21,6 +23,12 @@ public class ScoreWeekService {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     *
+     * @param scoreWeek
+     * @param user
+     * @return
+     */
     public ScoreWeek saveScore(ScoreWeek scoreWeek, User user) {
         try {
             validateUserAndScore(scoreWeek , user);
@@ -35,6 +43,11 @@ public class ScoreWeekService {
         return scoreWeekRepository.save(scoreWeek);
     }
 
+    /**
+     *
+     * @param score
+     * @param user
+     */
     private void validateUserAndScore(ScoreWeek score , User user){
 
         Assert.notNull(user , "User is null.");
@@ -42,14 +55,28 @@ public class ScoreWeekService {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public List<ScoreWeek> getScores() {
         return scoreWeekRepository.findAll();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public ScoreWeek getScoreById(int id) {
         return scoreWeekRepository.findById(id).orElse(null);
     }
 
+    /**
+     *
+     * @param scoreWeek
+     * @param user
+     */
     public void assignUserToScore(ScoreWeek scoreWeek, User user) {
 
         scoreWeek.setUser(user);
@@ -57,7 +84,10 @@ public class ScoreWeekService {
     }
 
 
-
+    /**
+     *
+     * @return
+     */
 
     public String updateScores() {
         List<ScoreWeek> scoreWeeks = scoreWeekRepository.findAll();

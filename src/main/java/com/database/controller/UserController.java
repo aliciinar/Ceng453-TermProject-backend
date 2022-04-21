@@ -13,31 +13,50 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Api(value = "User Api documentation")
+@Api(value = "User table controller documentation")
 public class UserController {
 
     @Autowired
-    private UserService service;
+    private UserService service; // User service for controller
 
-
-   // @ApiOperation(value = "New User adding method")
+    /**
+     *  New user register method.
+     *  If given user is not proper it throws an exception.
+     * @param User New User
+     * @return return new User if a user added to the table. Else returns null.
+     */
+    @ApiOperation(value = "Registering new User method")
     @PostMapping("/register")
     public User register(@RequestBody User User) {
         return service.registerUser(User);
     }
 
+    /**
+     * Delete user who has the given id.
+     * @param id id of the desired entity
+     * @return
+     */
     @ApiOperation(value = "Deleting the user with given id")
     @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id) {
         return service.deleteUser(id);
     }
 
-    //@ApiOperation(value = "New User adding method")
+    /**
+     * Attempt to Login given user
+     * @param user user information of the user
+     * @return
+     */
+    @ApiOperation(value = "Login method")
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody User user) {
         return service.loginUser(user);
     }
 
+    /**
+     *
+     * @return all the users from user table
+     */
     @ApiOperation(value = "Getting all the users method")
     @GetMapping("/Users")
     public List<User> findAllUsers() {
@@ -45,19 +64,35 @@ public class UserController {
     }
 
 
-
+    /**
+     *  Return user with the given id.
+     * @param id id of the desiret user.
+     * @return
+     */
     @ApiOperation(value = "Getting the user by given ID")
     @GetMapping("/UserById/{id}")
     public User findUserById(@PathVariable int id) {
         return service.getUserById(id);
     }
 
+    /**
+     *  Return user with the given name.
+     * @param name name of the desired user.
+     * @return
+     */
     @ApiOperation(value = "Getting the user by given name")
     @GetMapping("/User/{name}")
     public User findUserByName(@PathVariable String name) {
         return service.getUserByName(name);
     }
 
+    /**
+     * Updates user password.
+     * @param userName name of the user
+     * @param newPassword new password of the user
+     * @return
+     */
+    @ApiOperation(value = "Update method to reset password")
     @PutMapping("/update")
     public User updateUser( @RequestBody String userName , @RequestBody String newPassword) {
         return service.updateUser(userName , newPassword);

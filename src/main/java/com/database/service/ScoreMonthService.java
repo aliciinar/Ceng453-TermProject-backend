@@ -11,8 +11,10 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
+/**
+ * Service for ScoreMonth Table
+ */
 @Service
-
 public class ScoreMonthService {
 
     @Autowired
@@ -21,6 +23,13 @@ public class ScoreMonthService {
     @Autowired
     private UserRepository userRepository;
 
+
+    /**
+     *
+     * @param scoreMonth
+     * @param user
+     * @return
+     */
     public ScoreMonth saveScore(ScoreMonth scoreMonth, User user) {
 
         try {
@@ -36,6 +45,11 @@ public class ScoreMonthService {
         return scoreMonthRepository.save(scoreMonth);
     }
 
+    /**
+     *
+     * @param score
+     * @param user
+     */
     private void validateUserAndScore(ScoreMonth score , User user){
 
         Assert.notNull(user , "User is null.");
@@ -43,22 +57,38 @@ public class ScoreMonthService {
 
     }
 
-
+    /**
+     *
+     * @return
+     */
     public List<ScoreMonth> getScores() {
         return scoreMonthRepository.findAll();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public ScoreMonth getScoreById(int id) {
         return scoreMonthRepository.findById(id).orElse(null);
     }
 
+    /**
+     *
+     * @param scoreMonth
+     * @param user
+     */
     public void assignUserToScore(ScoreMonth scoreMonth, User user) {
 
         scoreMonth.setUser(user);
 
     }
 
-
+    /**
+     *
+     * @return
+     */
     public String updateScores() {
         List<ScoreMonth> scoreMonths = scoreMonthRepository.findAll();
         java.sql.Date today = new java.sql.Date(System.currentTimeMillis());

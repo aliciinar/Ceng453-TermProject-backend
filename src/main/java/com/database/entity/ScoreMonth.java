@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
+/**
+ * ScoreMonth Table
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
