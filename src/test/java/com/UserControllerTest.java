@@ -4,6 +4,7 @@ import com.database.entity.User;
 import com.database.repository.ScoreWeekRepository;
 import com.database.repository.UserRepository;
 import com.database.security.TokenManager;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
@@ -62,13 +63,23 @@ public  class UserControllerTest {
     @Test
     public void LoginSuccessTest() {
 
-        Assertions.assertEquals(userController.login(new User("UserTest3","UserTest3")).getStatusCode(), HttpStatus.OK);
+        User user1 = new User("UserTest3","UserTest3");
+        User user2 = new User("10","UserTest10");
+        User user3 = new User(null,"UserTest10");
+        User user4 = new User("UserTest3",null);
 
-        Assertions.assertEquals(userController.login(new User("10","UserTest10")).getStatusCode(), HttpStatus.BAD_REQUEST);
+        Assertions.assertEquals(userController.login(user1).getStatusCode(), HttpStatus.OK);
 
-        Assertions.assertEquals(userController.login(new User(null,"UserTest10")).getStatusCode(), HttpStatus.BAD_REQUEST);
+        Assertions.assertEquals(userController.login(user2).getStatusCode(), HttpStatus.BAD_REQUEST);
 
-        Assertions.assertEquals(userController.login(new User("UserTest3",null)).getStatusCode(), HttpStatus.BAD_REQUEST);
+        Assertions.assertEquals(userController.login(user3).getStatusCode(), HttpStatus.BAD_REQUEST);
+
+        Assertions.assertEquals(userController.login(user4).getStatusCode(), HttpStatus.BAD_REQUEST);
+
+        userController.deleteUser(user1.getId());
+        userController.deleteUser(user2.getId());
+        userController.deleteUser(user3.getId());
+        userController.deleteUser(user4.getId());
 
 
 
@@ -77,7 +88,13 @@ public  class UserControllerTest {
 
     @Test
     public  void UserUpdateTest(){
-        System.out.println(userController.updateUser("UserTest","newPassword"));
+
+
+        User user = userController.findUserByName("UserTest");
+        String oldPassword = user.getPassword();
+        userController.updateUser(user.getName() , "NewPassword");
+        Assertions.assertNotEquals("Password Update Error",oldPassword , user.getPassword());
+        userController.updateUser(user.getName() , "UserTest3");
     }
 
 
@@ -95,7 +112,9 @@ public  class UserControllerTest {
 
         userController.register(userTest.getName(),userTest.getPassword(),userTest.getEmail());
 
-        Assertions.assertEquals(userController.deleteUser(userController.findUserByName("UserTest4").getId()).getStatusCode(),HttpStatus.OK);
+        userController.deleteUser(userController.findUserByName("UserTest4").getId());
+
+        Assertions.assertNull(userController.findUserByName("UserTest4"));
 
 
 

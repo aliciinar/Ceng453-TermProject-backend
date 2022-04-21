@@ -16,7 +16,9 @@ port: 3306
 
 #Documentation
 
-Swagger Documentation at /v2/api-docs and [[Swagger UI](src/index.html)]
+Swagger Documentation at /v2/api-docs and [Swagger UI](https://github.com/saitss/Ceng453-TermProject-Group-4-backend/blob/main/src/index.html)
+
+I could not configure the swagger ui link above. To open the swagger ui please use src/index.html file
 
 Tests are at src/test/java/com
 
