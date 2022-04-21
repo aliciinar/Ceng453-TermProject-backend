@@ -8,6 +8,7 @@ import com.database.security.UserDetailService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -58,17 +59,19 @@ public class UserService {
         return repository.findByName(name);
     }
 
-    public String deleteUser(int id) {
+    public ResponseEntity<String> deleteUser(int id) {
 
         try {
+            System.out.println("a");
             repository.deleteById(id);
         }
         catch (Exception e){
+            System.out.println("b");
             System.out.println("Deletion Failed");
-            return "User not removed";
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
         System.out.println("Deletion Success");
-        return "User removed !! " + id;
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 
@@ -107,7 +110,7 @@ public class UserService {
         }
         catch (Exception e){
             System.out.println(e);
-            throw e;
+            return   new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 
