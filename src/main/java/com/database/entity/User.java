@@ -53,7 +53,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.role = "User";
-        this.verified = false;
+
     }
 
     public User(String name , String password){
