@@ -34,9 +34,6 @@ public class SpringBoot {
     @ResponseBody
     void home() {
 
-        User testUser = userService.findUserByName("UserTest");
-        userService.updateUser("UserTest","UserTest");
-        sw.addScore(new ScoreWeek(12) , testUser);
 
     }
 
