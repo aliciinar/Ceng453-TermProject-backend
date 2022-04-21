@@ -106,7 +106,7 @@ public class UserService  {
 
 
     public ResponseEntity<String> loginUser(User user){
-          User optionalPlayer = repository.findByName(user.getName());
+        User optionalPlayer = repository.findByName(user.getName());
 
         try {
             validateUserLogin(user);
@@ -137,7 +137,7 @@ public class UserService  {
         Assert.notNull(user , "Null User");
         Assert.notNull(user.getName() , "Null User Name");
         Assert.notNull(user.getPassword() , "Null User Password");
-        Assert.isTrue(user.isVerified() , "User is Not Verified");
+
     }
 
 

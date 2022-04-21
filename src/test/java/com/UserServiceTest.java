@@ -50,11 +50,12 @@ public  class UserServiceTest {
     @Test
     public void LoginSuccessTest() {
         User user = new User("UserTest", "UserTester", "saitsutss@gmail.com");
+        System.out.println(userService.loginUser(new User("UserTest2","UserTest2")));
+        Assertions.assertNotNull(userService.loginUser(new User("UserTest2","UserTest2")));
+    }
 
-        when(userService.loginUser(user)).then(returnsFirstArg());
-        ;
-
-        Assertions.assertNotNull(userService.loginUser(user));
+    public void resetPassword(){
+        userService.updateUser("UserTest2","UserTest2");
     }
 }
 

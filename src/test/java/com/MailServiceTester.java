@@ -1,4 +1,4 @@
-package com.tests;
+package com;
 
 import com.mail.Mail;
 import com.mail.MailService;
