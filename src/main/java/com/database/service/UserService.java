@@ -59,6 +59,10 @@ public class UserService {
         return repository.findByName(name);
     }
 
+    public User getUserByEMail(String email) {
+        return repository.findByEmail(email);
+    }
+
     public ResponseEntity<String> deleteUser(int id) {
 
         try {
@@ -75,22 +79,18 @@ public class UserService {
     }
 
 
-    public User registerUser(String name , String password , String email) {
+    public User registerUser(User user) {
 
-        User user = new User(name , password , email);
         try{
             validateUserRegister(user);
         }
         catch (Exception e) {
-            System.out.println(e);
-            System.out.println("User " + user.getName() + " could not be added");
             return null;
         }
 
         user.setRole("User");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         repository.save(user);
-        System.out.println("User " + user.getName() + " added");
         return user;
 
     }
@@ -102,14 +102,12 @@ public class UserService {
 
 
         try {
-            System.out.println(user.getPassword());
             validateUserLogin(user);
             authenticationProvider.authenticate(new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword()));
             return ResponseEntity.ok(tokenManager.generateToken(user.getName()));
 
         }
         catch (Exception e){
-            System.out.println(e);
             return   new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }

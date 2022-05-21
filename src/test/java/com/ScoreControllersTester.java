@@ -37,15 +37,6 @@ public class ScoreControllersTester {
     @Test
     public void addNewScoreWeek() {
 
-        int scoreWeekSize = scoreWeekController.findAllScores().size();
-
-        User testUser = userController.findUserByName("UserTest");
-
-        ScoreWeek testScoreWeek = new ScoreWeek(15);
-
-        scoreWeekController.addScore(testScoreWeek , testUser);
-
-        Assert.assertEquals("Week Entity Not added" , scoreWeekSize + 1, scoreWeekController.findAllScores().size() );
 
 
     }
@@ -55,15 +46,7 @@ public class ScoreControllersTester {
     @Test
     public void addNewScoreMonth() {
 
-        int scoreMonthSize = scoreMonthController.findAllScores().size();
 
-        User testUser = userController.findUserByName("UserTest");
-
-        ScoreMonth testScoreMonth = new ScoreMonth(15);
-
-        scoreMonthController.addScore(testScoreMonth , testUser);
-
-        Assert.assertEquals("Month Entity Not added" , scoreMonthSize + 1, scoreMonthController.findAllScores().size() );
 
     }
 
@@ -73,19 +56,6 @@ public class ScoreControllersTester {
     @Test
     public void deleteOverdueEntitiesFromScoreMonthTable() {
 
-        int scoreMonthSize = scoreMonthController.findAllScores().size();
-
-        User testUser = userController.findUserByName("UserTest");
-
-        ScoreMonth testScoreMonth = new ScoreMonth(15);
-
-        testScoreMonth.setSqlDate(new Date(2));
-
-        scoreMonthController.addScore(testScoreMonth , testUser);
-
-        scoreMonthController.updateScores();
-
-        Assert.assertEquals("Month Entity Not deleted" , scoreMonthSize , scoreMonthController.findAllScores().size() );
 
     }
 
@@ -102,8 +72,6 @@ public class ScoreControllersTester {
         ScoreWeek testScoreWeek = new ScoreWeek(15);
 
         testScoreWeek.setSqlDate(new Date(123123));
-
-        scoreWeekController.addScore(testScoreWeek , testUser);
 
         scoreWeekController.updateScores();
 

@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Service for ScoreWeek Table
@@ -23,23 +26,8 @@ public class ScoreWeekService {
     @Autowired
     private UserRepository userRepository;
 
-    /**
-     *
-     * @param scoreWeek
-     * @param user
-     * @return
-     */
-    public ScoreWeek saveScore(ScoreWeek scoreWeek, User user) {
-        try {
-            validateUserAndScore(scoreWeek , user);
-        }
-        catch (Exception e){
-            System.out.println(e);
-            return null;
-        }
 
-        assignUserToScore(scoreWeek, user);
-        System.out.println("Score Added Successfully");
+    public ScoreWeek saveScore(ScoreWeek scoreWeek) {
         return scoreWeekRepository.save(scoreWeek);
     }
 
@@ -60,7 +48,9 @@ public class ScoreWeekService {
      * @return
      */
     public List<ScoreWeek> getScores() {
-        return scoreWeekRepository.findAll();
+        List<ScoreWeek> scores = scoreWeekRepository.findAll();
+
+        return scores;
     }
 
     /**
@@ -82,7 +72,6 @@ public class ScoreWeekService {
         scoreWeek.setUser(user);
 
     }
-
 
     /**
      *

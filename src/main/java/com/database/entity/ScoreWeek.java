@@ -1,19 +1,18 @@
 package com.database.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.transaction.annotation.Transactional;
+import com.database.entity.dto.ScoreDto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 
 /**
  * ScoreWeek Table
  */
-@Data
+
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity // This tells Hibernate to make a table out of this class
@@ -25,19 +24,25 @@ public class ScoreWeek {
     private int id;
 
 
-    @ManyToOne()
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JoinColumn(name = "user", referencedColumnName = "id")
     private  User user;
 
     private int score;
     private java.sql.Date sqlDate;
 
-    public ScoreWeek(int score  ){
+    public ScoreWeek(int score ){
         this.sqlDate = new java.sql.Date(System.currentTimeMillis());
         this.score = score;
         this.sqlDate = sqlDate;
     }
 
+
+    public static ScoreWeek from(ScoreDto dto) {
+        ScoreWeek scoreWeek = new ScoreWeek(dto.getScore());
+        return scoreWeek;
+    }
 
 
 

@@ -1,16 +1,23 @@
 package com.database.controller;
 
 import com.database.entity.User;
+import com.database.entity.dto.ForgetPasswordDto;
+import com.database.security.TokenManager;
 import com.database.service.UserService;
 import com.mail.Mail;
 import com.mail.MailService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
 /**
@@ -25,47 +32,74 @@ public class ForgotPasswordController {
     @Autowired
     private UserService us; // User Table service for getting user emails.
 
+    @Autowired
+    private TokenManager tokenManager;
 
-    /**
-     * Send password reset mail to the user with given name.
-     * If user do not exist or user email is not equal to requested email it throws exception.
-     * @param name of the user
-     * @param email email of the user
-     */
+    private Map<String , String> tokens = new HashMap<>();
+
+
     @ApiOperation(value = "Sends mail to the user with given email and name. User must have the same email value with the parameter email")
     @PostMapping("/forgot_password")
-    public void processForgotPassword(@RequestBody String name , @RequestBody String email) throws Exception {
-        User user = us.getUserByName(name);
-        Assert.notNull(user , "User Not Exists");
-        Assert.isTrue(user.getEmail().equals(email) , "Email is Wrong");
-        sentMail(email);
+    public String processForgotPassword(@RequestBody ForgetPasswordDto name) throws Exception {
+
+        User user = us.getUserByEMail(name.getName());
+        if(user == null) return "Email is not registered";
+        sentMail(user);
+        return "Email has been sent";
 
     }
 
-    /**
-     * Helper method for the processForgotPassword
-     * It prepares the mail information and send them when ready.
-     * @param email email of to receiver end
-     */
-    private void sentMail(String email){
+    @RequestMapping(value="/confirm-reset", method= {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView validateResetToken(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)
+    {
+        if(tokens.keySet().contains(confirmationToken)){
+            String name = tokens.get(confirmationToken);
+            User tmpUser = new User();
+            tmpUser.setName(name);
+            modelAndView.addObject("user" , tmpUser);
+            tokens.remove(confirmationToken);
+            modelAndView.setViewName("resetPassword");
+
+        }
+
+        else{
+            modelAndView.addObject("message","The link is invalid or broken!");
+            modelAndView.setViewName("error");
+        }
+        return modelAndView;
+
+    }
+
+
+    private void sentMail(User user){
         Mail mail = new Mail();
+        String token = tokenManager.generateToken(user.getName());
+        tokens.put(token , user.getName());
         mail.setMailFrom("453group4@gmail.com");
-        mail.setMailTo(email);
+        mail.setMailTo(user.getEmail());
         mail.setMailSubject("Spring Boot - Reset Password");
-        mail.setMailContent("Click here to Reset your password ( Will be implemented in frontend) ");
+        mail.setMailContent("To complete the password reset process, please click here: "
+                + "http://localhost:8080/confirm-reset?token="+token);
         ms.sendEmail(mail);
     }
 
+    @ApiOperation(value = "Reset the Password")
+    @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
+    public ModelAndView resetUserPassword(ModelAndView modelAndView, User user) {
+        try {
+            us.updateUser(user.getName() , user.getPassword());
+            if(user == null) System.out.println("Null User");
+            modelAndView.addObject("message","Password has been changed");
+            modelAndView.setViewName("error");
 
-    /**
-     * Changes user password to the new password
-     * This method is called after user receive forgot password mail
-     * @param name name of the user which will have password reset
-     * @param password new password
-     */
-    @PostMapping("/reset_password")
-    @ApiOperation(value = "Reset password to the given password if user with the given name exists")
-    public void processResetPassword(@RequestBody String name , @RequestBody String password) {
-        us.updateUser(name , password);
+            return modelAndView;
+        }
+        catch (IllegalArgumentException e){
+
+            modelAndView.addObject("message","The link is invalid or broken!");
+            modelAndView.setViewName("error");
+            return modelAndView;
+
+        }
     }
 }

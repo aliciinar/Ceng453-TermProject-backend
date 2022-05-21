@@ -1,6 +1,7 @@
 package com.database.entity;
 
 
+import com.database.entity.dto.ScoreDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,7 @@ public class ScoreMonth {
 
 
     @ManyToOne()
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user", referencedColumnName = "id")
     private  User user; // Referenced User
 
     private int score; // Score value
@@ -38,6 +39,11 @@ public class ScoreMonth {
         this.sqlDate = new java.sql.Date(System.currentTimeMillis());
         this.score = score;
         this.sqlDate = sqlDate;
+    }
+
+    public static ScoreMonth from(ScoreDto dto) {
+        ScoreMonth scoreMonth = new ScoreMonth(dto.getScore());
+        return scoreMonth;
     }
 
 

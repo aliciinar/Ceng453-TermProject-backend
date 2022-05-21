@@ -9,13 +9,12 @@ import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.*;
 
 
 import org.springframework.stereotype.*;
-
+import org.springframework.web.servlet.ModelAndView;
+import springfox.documentation.schema.Model;
 
 
 @EnableEncryptableProperties
@@ -30,12 +29,6 @@ public class SpringBoot {
     @Autowired
     private ScoreWeekController sw;
 
-    @RequestMapping("/")
-    @ResponseBody
-    void home() {
-
-
-    }
 
 
 

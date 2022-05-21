@@ -1,7 +1,9 @@
 package com.database.controller;
 
 import com.database.entity.ScoreMonth;
+import com.database.entity.ScoreWeek;
 import com.database.entity.User;
+import com.database.entity.dto.ScoreDto;
 import com.database.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,18 +22,17 @@ public class ScoreMonthController {
     @Autowired
     private ScoreMonthService service; // Service Class for ScoreMonth table
 
-    /**
-     * Add row to the ScoreMonth table. User id refers to User entity
-     * @param ScoreMonth ScoreMonth entity which is going to be added to the database
-     * @param user User entity who has the score
-     * @return
-     */
+    @Autowired
+    private UserService userService;
+
+
     @ApiOperation(value = "New Score adding method")
     @PostMapping("/addScoreMonth")
-    public ScoreMonth addScore(@RequestBody ScoreMonth ScoreMonth, @RequestBody User user) {
-        return service.saveScore(ScoreMonth, user);
+    public ScoreMonth addScore(@RequestBody ScoreDto scoreMonthDto) {
+        ScoreMonth scoreMonth = ScoreMonth.from(scoreMonthDto);
+        scoreMonth.setUser(userService.getUserById(scoreMonthDto.getUserID()));
+        return service.saveScore(scoreMonth);
     }
-
 
     /**
      *
@@ -40,7 +41,7 @@ public class ScoreMonthController {
     @ApiOperation(value = "Getting all the scores method")
     @GetMapping("/ScoresMonth")
     public List<ScoreMonth> findAllScores() {
-
+        updateScores();
         return service.getScores();
     }
 

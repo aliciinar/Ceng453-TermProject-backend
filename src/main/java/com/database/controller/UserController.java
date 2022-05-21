@@ -1,5 +1,7 @@
 package com.database.controller;
 
+import com.database.entity.dto.UserLoginDto;
+import com.database.entity.dto.UserRegisterDto;
 import com.database.entity.User;
 import com.database.service.UserService;
 import io.swagger.annotations.Api;
@@ -21,9 +23,9 @@ public class UserController {
 
     @ApiOperation(value = "Registering new User method")
     @PostMapping("/register")
-    public User register(@RequestBody String name , @RequestBody String password , @RequestBody String email) {
-
-        return service.registerUser(name , password , email);
+    public User register(@RequestBody UserRegisterDto userRegisterDto) {
+        User user = User.from(userRegisterDto);
+        return service.registerUser(user);
     }
 
 
@@ -40,13 +42,14 @@ public class UserController {
     }
 
     /**
-     * Attempt to Login given user
-     * @param user user information of the user
+     *
+     * @param userDto
      * @return
      */
     @ApiOperation(value = "Login method")
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<String> login(@RequestBody UserLoginDto userDto) {
+        User user = User.from(userDto);
         return service.loginUser(user);
     }
 

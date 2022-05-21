@@ -23,25 +23,8 @@ public class ScoreMonthService {
     @Autowired
     private UserRepository userRepository;
 
+    public ScoreMonth saveScore(ScoreMonth scoreMonth) {
 
-    /**
-     *
-     * @param scoreMonth
-     * @param user
-     * @return
-     */
-    public ScoreMonth saveScore(ScoreMonth scoreMonth, User user) {
-
-        try {
-            validateUserAndScore(scoreMonth , user);
-        }
-        catch (Exception e){
-            System.out.println(e);
-            return null;
-        }
-
-        assignUserToScore(scoreMonth, user);
-        System.out.println("Score Added Successfully");
         return scoreMonthRepository.save(scoreMonth);
     }
 

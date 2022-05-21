@@ -1,7 +1,7 @@
 package com.database.controller;
 
+import com.database.entity.dto.ScoreDto;
 import com.database.entity.ScoreWeek;
-import com.database.entity.User;
 import com.database.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Controller class for ScoreWeek table
  */
+
 @RestController
 @Api(value = "ScoreWeek table controller documentation")
 public class ScoreWeekController {
@@ -20,16 +21,16 @@ public class ScoreWeekController {
     @Autowired
     private ScoreWeekService service;
 
-    /**
-     * Add row to the ScoreWeek table. User id refers to User entity
-     * @param ScoreWeek ScoreWeek entity which is going to be added to the database
-     * @param user User entity who has the score
-     * @return
-     */
+    @Autowired
+    private UserService userService;
+
+
     @ApiOperation(value = "New Score adding method")
     @PostMapping("/addScoreWeek")
-    public ScoreWeek addScore(@RequestBody ScoreWeek ScoreWeek, User user) {
-        return service.saveScore(ScoreWeek, user);
+    public ScoreWeek addScore(@RequestBody ScoreDto scoreWeekDto) {
+        ScoreWeek scoreWeek = ScoreWeek.from(scoreWeekDto);
+        scoreWeek.setUser(userService.getUserById(scoreWeekDto.getUserID()));
+        return service.saveScore(scoreWeek);
     }
 
     /**
@@ -39,6 +40,8 @@ public class ScoreWeekController {
     @ApiOperation(value = "Getting all the scores method")
     @GetMapping("/ScoresWeek")
     public List<ScoreWeek> findAllScores() {
+
+        updateScores();
         return service.getScores();
     }
 
