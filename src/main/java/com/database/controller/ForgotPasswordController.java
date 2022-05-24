@@ -79,7 +79,7 @@ public class ForgotPasswordController {
         mail.setMailTo(user.getEmail());
         mail.setMailSubject("Spring Boot - Reset Password");
         mail.setMailContent("To complete the password reset process, please click here: "
-                + "http://localhost:8080/confirm-reset?token="+token);
+                + "https://ceng453-term-project-group-4.herokuapp.com/confirm-reset?token="+token);
         ms.sendEmail(mail);
     }
 
