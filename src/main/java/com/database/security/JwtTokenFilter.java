@@ -13,6 +13,10 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+/**
+ * This class is checking  if the incoming request has a valid JSON Web Token (JWT). It checks the validity of the JWT by verifying the JWT signature,
+ * audiences and issuer based on the HTTP filter configuration.
+ */
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter {
 

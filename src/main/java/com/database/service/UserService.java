@@ -4,8 +4,6 @@ import com.database.entity.User;
 import com.database.repository.UserRepository;
 import com.database.security.TokenManager;
 import com.database.security.UserDetailService;
-
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,11 +64,11 @@ public class UserService {
     public ResponseEntity<String> deleteUser(int id) {
 
         try {
-            System.out.println("a");
+
             repository.deleteById(id);
         }
         catch (Exception e){
-            System.out.println("b");
+
             System.out.println("Deletion Failed");
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
@@ -120,6 +118,7 @@ public class UserService {
         Assert.notNull(user.getPassword() , "Null User Password");
         Assert.notNull(user.getEmail() , "Null User Email");
         Assert.isNull(getUserByName(user.getName()) , "User exists");
+        Assert.isNull(getUserByEMail(user.getEmail()) , "Mail exists") ;
 
     }
 

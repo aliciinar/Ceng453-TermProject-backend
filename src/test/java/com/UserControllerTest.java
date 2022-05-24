@@ -20,7 +20,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.mockito.Mockito.when;
 
-
+/**
+ * Test class for User Controller class. Login, Register , UserUpdate, UserDelete is tested.
+ */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

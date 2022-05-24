@@ -7,18 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.User;
-
-import org.springframework.security.core.userdetails.User;
-
 import java.util.ArrayList;
-import java.util.Optional;
-import javax.sql.RowSet;
-import java.util.ArrayList;
-import java.util.Optional;
+
+/**
+ * UserDetailsService implementation for security.
+ */
 @RequiredArgsConstructor
 @Service
 public class UserDetailService  implements UserDetailsService{
@@ -42,7 +37,7 @@ public class UserDetailService  implements UserDetailsService{
 
     private UserDetails toUserDetails(com.database.entity.User  user) {
         /* withDefaultPasswordEncoder hashes the password, creates authority list and returns a valid User */
-        System.out.println("User dön bana");
+
         return User.withUsername(user.getName())
                 .username(user.getName())
                 .password(user.getPassword())

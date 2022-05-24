@@ -1,6 +1,5 @@
 package com.database.service;
 
-import com.database.entity.ScoreMonth;
 import com.database.entity.ScoreWeek;
 import com.database.entity.User;
 import com.database.repository.ScoreWeekRepository;
