@@ -1,5 +1,6 @@
 package com.database.controller;
 
+import com.database.entity.ScoreMonth;
 import com.database.entity.dto.ScoreDto;
 import com.database.entity.ScoreWeek;
 import com.database.service.*;
@@ -8,7 +9,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Controller class for ScoreWeek table
@@ -43,6 +46,7 @@ public class ScoreWeekController {
     public List<ScoreWeek> findAllScores() {
 
         updateScores();
+        List<ScoreWeek> scores = service.getScores().stream().sorted(Comparator.comparing(ScoreWeek::getScore)).collect(Collectors.toList());
         return service.getScores();
     }
 

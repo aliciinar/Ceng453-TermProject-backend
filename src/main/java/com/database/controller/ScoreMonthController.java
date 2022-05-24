@@ -10,7 +10,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Controller class for ScoreMonth table
@@ -42,6 +44,8 @@ public class ScoreMonthController {
     @GetMapping("/ScoresMonth")
     public List<ScoreMonth> findAllScores() {
         updateScores();
+        List<ScoreMonth> scores = service.getScores().stream().sorted(Comparator.comparing(ScoreMonth::getScore)).collect(Collectors.toList());
+
         return service.getScores();
     }
 
