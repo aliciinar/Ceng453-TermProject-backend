@@ -8,6 +8,6 @@ import lombok.Data;
 public class ScoreDto {
 
     private int score;
-    private int userID;
+    private String name;
 
 }

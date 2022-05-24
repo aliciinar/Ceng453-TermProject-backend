@@ -30,7 +30,7 @@ public class ScoreMonthController {
     @PostMapping("/addScoreMonth")
     public ScoreMonth addScore(@RequestBody ScoreDto scoreMonthDto) {
         ScoreMonth scoreMonth = ScoreMonth.from(scoreMonthDto);
-        scoreMonth.setUser(userService.getUserById(scoreMonthDto.getUserID()));
+        scoreMonth.setUser(userService.getUserByName(scoreMonthDto.getName()));
         return service.saveScore(scoreMonth);
     }
 

@@ -29,7 +29,8 @@ public class ScoreWeekController {
     @PostMapping("/addScoreWeek")
     public ScoreWeek addScore(@RequestBody ScoreDto scoreWeekDto) {
         ScoreWeek scoreWeek = ScoreWeek.from(scoreWeekDto);
-        scoreWeek.setUser(userService.getUserById(scoreWeekDto.getUserID()));
+        scoreWeek.setUser(userService.getUserByName(scoreWeekDto.getName()));
+        System.out.println(userService.getUserByName(scoreWeekDto.getName()));
         return service.saveScore(scoreWeek);
     }
 
