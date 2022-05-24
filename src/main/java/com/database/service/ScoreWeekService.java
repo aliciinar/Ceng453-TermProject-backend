@@ -5,6 +5,7 @@ import com.database.entity.User;
 import com.database.repository.ScoreWeekRepository;
 import com.database.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -47,7 +48,7 @@ public class ScoreWeekService {
      * @return
      */
     public List<ScoreWeek> getScores() {
-        List<ScoreWeek> scores = scoreWeekRepository.findAll();
+        List<ScoreWeek> scores = scoreWeekRepository.findAll(Sort.by(Sort.Direction.DESC , "score"));
 
         return scores;
     }

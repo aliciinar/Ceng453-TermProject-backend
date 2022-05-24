@@ -44,9 +44,9 @@ public class ScoreMonthController {
     @GetMapping("/ScoresMonth")
     public List<ScoreMonth> findAllScores() {
         updateScores();
-        List<ScoreMonth> scores = service.getScores().stream().sorted(Comparator.comparing(ScoreMonth::getScore)).collect(Collectors.toList());
 
-        return scores;
+
+        return service.getScores();
     }
 
     /**

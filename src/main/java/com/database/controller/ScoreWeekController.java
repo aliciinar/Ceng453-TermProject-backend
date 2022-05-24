@@ -46,8 +46,7 @@ public class ScoreWeekController {
     public List<ScoreWeek> findAllScores() {
 
         updateScores();
-        List<ScoreWeek> scores = service.getScores().stream().sorted(Comparator.comparing(ScoreWeek::getScore)).collect(Collectors.toList());
-        return scores;
+        return service.getScores();
     }
 
     /**
