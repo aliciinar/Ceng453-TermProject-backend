@@ -4,8 +4,10 @@ com\database\service\ScoreWeekService.class
 com\database\controller\UserController.class
 com\database\entity\ScoreMonth.class
 com\database\service\UserService.class
+com\database\entity\dto\UserLoginDto.class
 com\mail\IMailService.class
 com\database\entity\User.class
+com\configuration\SecurityConfig.class
 com\database\repository\ScoreMonthRepository.class
 com\mail\Mail.class
 com\database\security\TokenManager.class
@@ -13,7 +15,10 @@ com\database\controller\ScoreMonthController.class
 com\database\repository\ScoreWeekRepository.class
 com\mail\MailService.class
 com\configuration\SwaggerConfig.class
+com\database\entity\dto\ForgetPasswordDto.class
 com\database\security\UserDetailService.class
+com\database\entity\dto\UserRegisterDto.class
+com\database\entity\dto\ScoreDto.class
 com\database\entity\ScoreWeek.class
 com\database\controller\ForgotPasswordController.class
 com\database\repository\UserRepository.class

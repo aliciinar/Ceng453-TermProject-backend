@@ -1,2 +1,3 @@
-com\UserServiceTest.class
+com\ScoreControllersTester.class
+com\UserControllerTest.class
 com\MailServiceTester.class
