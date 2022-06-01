@@ -16,10 +16,12 @@ port: 3306
 
 # Documentation
 
-Swagger Documentation :   [Swagger UI](https://ceng453-term-project-group-4.herokuapp.com/swagger-ui.html)
+ * Swagger Documentation :   [Swagger UI](https://ceng453-term-project-group-4.herokuapp.com/swagger-ui.html)
 
 
-PS: hopefully this counts as API document and API collection since i am not sure what else it might means.
+ * PS: hopefully this counts as API document and API collection since i am not sure what else it might means.
+
+ * [Postman Jason Share Link](https://www.getpostman.com/collections/07ba043f205e7edc2bb1)
 
 
 Tests are at src/test/java/com
