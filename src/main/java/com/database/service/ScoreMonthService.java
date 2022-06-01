@@ -30,8 +30,8 @@ public class ScoreMonthService {
 
     /**
      *
-     * @param score
-     * @param user
+     * @param score score ıf the user
+     * @param user current user whose score will recorded to the table
      */
     private void validateUserAndScore(ScoreMonth score , User user){
 
@@ -42,7 +42,7 @@ public class ScoreMonthService {
 
     /**
      *
-     * @return
+     * @return monthly scores
      */
     public List<ScoreMonth> getScores() {
         return scoreMonthRepository.findAll(Sort.by(Sort.Direction.DESC , "score"));
@@ -50,7 +50,7 @@ public class ScoreMonthService {
 
     /**
      *
-     * @param id
+     * @param id id of the player
      * @return
      */
     public ScoreMonth getScoreById(int id) {
@@ -59,8 +59,8 @@ public class ScoreMonthService {
 
     /**
      *
-     * @param scoreMonth
-     * @param user
+     * @param scoreMonth month score value
+     * @param user current user whose score will recorded to the table
      */
     public void assignUserToScore(ScoreMonth scoreMonth, User user) {
 

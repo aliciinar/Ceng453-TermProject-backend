@@ -8,7 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 
 /**
- * ScoreWeek Table
+ * ScoreWeek Table which contain user - score - score time
  */
 
 @Setter

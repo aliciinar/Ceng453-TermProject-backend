@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * User Entity for user table
+ * User Entity for user table which contain - id - name - email - password - role
  */
 
 @Setter

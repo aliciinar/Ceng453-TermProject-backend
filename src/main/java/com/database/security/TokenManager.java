@@ -21,8 +21,8 @@ public class TokenManager {
 
     /**
      * Create token with specified key and with determined expiration time.
-     * @param username
-     * @return
+     * @param username username of the player
+     * @return token
      */
     public String generateToken(String username) {
         return Jwts.builder()
@@ -36,7 +36,7 @@ public class TokenManager {
 
     /**
      * Check whether the token is  not null and not expired
-     * @param token
+     * @param token user token
      * @return
      */
     public boolean tokenValidate(String token) {
@@ -53,8 +53,8 @@ public class TokenManager {
 
     /**
      * Check whether the token is expired or not
-     * @param token
-     * @return
+     * @param token  token of the user
+     * @return  whether login time is expired or not
      */
     public boolean isExpired(String token) {
         Claims claims = getClaims(token);
