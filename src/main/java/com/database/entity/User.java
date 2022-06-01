@@ -20,7 +20,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity // This tells Hibernate to make a table out of this class
-@ApiModel(value = "User Api model documentation", description = "Model")
+
 public class User {
 
     @Id

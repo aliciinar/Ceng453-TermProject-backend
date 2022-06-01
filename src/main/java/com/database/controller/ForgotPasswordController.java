@@ -48,7 +48,7 @@ public class ForgotPasswordController {
         return "Email has been sent";
 
     }
-
+    @ApiOperation(value = "Confirms Password Reset Action")
     @RequestMapping(value="/confirm-reset", method= {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView validateResetToken(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)
     {
