@@ -1,6 +1,6 @@
 # Ceng453-TermProject-Group-4-backend
 
-#Database 
+# Database 
 
 host: 144.122.71.168
 
@@ -14,9 +14,12 @@ port: 3306
 
 ![Screenshot](src/dataBase.png)
 
-#Documentation
+# Documentation
 
-Swagger Documentation at /v2/api-docs and [Swagger UI](https://ceng453-term-project-group-4.herokuapp.com/swagger-ui.html)
+Swagger Documentation :   [Swagger UI](https://ceng453-term-project-group-4.herokuapp.com/swagger-ui.html)
+
+
+PS: hopefully this counts as API document and API collection since i am not sure what else it might means.
 
 I could not configure the swagger ui link above. To open the swagger ui please use src/index.html file
 
