@@ -18,6 +18,7 @@ import org.springframework.util.Assert;
 import java.util.List;
 /**
  * User service for user table
+ * Login and register to the database
  */
 @RequiredArgsConstructor
 @Service
@@ -110,6 +111,10 @@ public class UserService {
         }
     }
 
+    /**
+     *  Validate user registration
+     * @param user user who is tryinh to register
+     */
 
     private void validateUserRegister(User user){
 
@@ -122,6 +127,10 @@ public class UserService {
 
     }
 
+    /**
+     * Validate user login
+     * @param user user who is trying to login
+     */
     private void validateUserLogin(User user){
         Assert.notNull(user , "Null User");
         Assert.notNull(user.getName() , "Null User Name");

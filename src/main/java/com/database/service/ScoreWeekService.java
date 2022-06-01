@@ -32,9 +32,9 @@ public class ScoreWeekService {
     }
 
     /**
-     *
-     * @param score
-     * @param user
+     * validate user and score
+     * @param score score of the user
+     * @param user   user
      */
     private void validateUserAndScore(ScoreWeek score , User user){
 
@@ -45,7 +45,7 @@ public class ScoreWeekService {
 
     /**
      *
-     * @return
+     * @return score weeks
      */
     public List<ScoreWeek> getScores() {
         List<ScoreWeek> scores = scoreWeekRepository.findAll(Sort.by(Sort.Direction.DESC , "score"));
@@ -55,8 +55,8 @@ public class ScoreWeekService {
 
     /**
      *
-     * @param id
-     * @return
+     * @param id id of the player
+     * @return data base result
      */
     public ScoreWeek getScoreById(int id) {
         return scoreWeekRepository.findById(id).orElse(null);
@@ -64,8 +64,8 @@ public class ScoreWeekService {
 
     /**
      *
-     * @param scoreWeek
-     * @param user
+     * @param scoreWeek score of the user in week
+     * @param user   current user whose score will recorded to the table
      */
     public void assignUserToScore(ScoreWeek scoreWeek, User user) {
 
@@ -74,8 +74,8 @@ public class ScoreWeekService {
     }
 
     /**
-     *
-     * @return
+     * update scores
+     * @return string in order to easy debug
      */
 
     public String updateScores() {

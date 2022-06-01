@@ -30,6 +30,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         /**
          * "Bearer 123hab2355"
+         *
          */
         final String authHeader = httpServletRequest.getHeader("Authorization");
 

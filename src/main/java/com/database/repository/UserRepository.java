@@ -3,6 +3,9 @@ package com.database.repository;
 import com.database.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+/**
+ * Repository for user information
+ */
 
 public interface UserRepository extends JpaRepository<User,Integer> {
 

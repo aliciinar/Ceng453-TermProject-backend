@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 /**
  * UserDetailsService implementation for security.
+ * Inherit from UserDetailsService which is spring security implementation
  */
 @RequiredArgsConstructor
 @Service
