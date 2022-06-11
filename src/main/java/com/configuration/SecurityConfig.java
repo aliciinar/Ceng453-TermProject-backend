@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/reset-password").permitAll()
                 .antMatchers("/swagger-ui").permitAll()
                 .antMatchers("/v2/api-docs" , "/swagger-resources/**" , "/swagger-ui.html**","/webjars/**").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
 
                 .sessionManagement()
@@ -78,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
-        var daoAuthenticationProvider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;

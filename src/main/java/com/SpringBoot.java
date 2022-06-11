@@ -5,6 +5,7 @@ import com.database.controller.ScoreWeekController;
 import com.database.controller.UserController;
 import com.database.entity.ScoreWeek;
 import com.database.entity.User;
+import com.database.repository.GameRepository;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -40,6 +41,7 @@ public class SpringBoot {
 
 
     public static void main(String[] args) {
+
         SpringApplication.run(SpringBoot.class, args);
     }
 }
