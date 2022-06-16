@@ -39,7 +39,7 @@ public class Game {
 
     private boolean searchUser = true;
 
-    @OneToMany(mappedBy="game")
+    @OneToMany(cascade =  CascadeType.REMOVE,mappedBy="game")
     private List<Action> actions = new ArrayList<>();
 
     public Game(String user1) {

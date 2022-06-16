@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/reset-password").permitAll()
                 .antMatchers("/swagger-ui").permitAll()
                 .antMatchers("/v2/api-docs" , "/swagger-resources/**" , "/swagger-ui.html**","/webjars/**").permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
                 .and()
 
                 .sessionManagement()
